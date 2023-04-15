@@ -12,7 +12,7 @@ class MoveableObject {
     }
 
     moveRight() {
-        console.log('Moving right')
+        this.x += this.speed;
     }
 
     moveLeft(){
@@ -20,12 +20,11 @@ class MoveableObject {
     }
 
     
-
     moveUp(){
-
+        this.y -= this.speed;
     }
 
     moveDown(){
-
+        this.y += this.speed;
     }
 }

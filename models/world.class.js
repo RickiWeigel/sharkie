@@ -1,12 +1,32 @@
 class World {
   character = new Character();
-  enemies = [new Fish(), new Fish(), new Fish(), new Fish(), new Fish(),new Fish(),new Fish(),new Fish()];
+  enemies = [
+    new Fish(),
+    new Fish(),
+    new Fish(),
+    new Fish(),
+    new Fish(),
+    new Fish(),
+    new Fish(),
+    new Fish(),
+    new Jellyfish(),
+    new Jellyfish(),
+    new Jellyfish(),
+    new Jellyfish(),
+    new Jellyfish(),
+    new Jellyfish(),
+    new Jellyfish(),
+    new Jellyfish(),
+    new Jellyfish(),
+  ];
+
   backgroundobjects = [
     new BackgroundObject("img/3.Background/Layers/5.Water/D.png", 0, 0),
     new BackgroundObject("img/3.Background/Layers/4.Fondo 2/D.png", 0, 0),
     new BackgroundObject("img/3.Background/Layers/3.Fondo 1/D.png", 0, 0),
     new BackgroundObject("img/3.Background/Layers/2. Floor/D.png", 0, 0),
   ];
+  
   canvas;
   ctx;
 
@@ -21,9 +41,6 @@ class World {
     this.addObjectsToMap(this.backgroundobjects);
     this.addObjectsToMap(this.enemies);
     this.addToMap(this.character);
-
-
-
 
     //Draw() wird immer wieder aufgerufen
     let self = this;
