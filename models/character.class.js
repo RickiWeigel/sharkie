@@ -36,6 +36,6 @@ class Character extends MoveableObject {
       let path = this.IMAGES_IDLE[i];
       this.img = this.imageCache[path];
       this.currentImage++;
-    }, 180);
+    }, 250);
   }
 }
