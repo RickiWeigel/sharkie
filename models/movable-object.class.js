@@ -1,4 +1,5 @@
 class MoveableObject {
+    speed = 1;
     x = 0;
     y = 250;
     height = 250;
@@ -15,6 +16,16 @@ class MoveableObject {
     }
 
     moveLeft(){
+        this.x -= this.speed;
+    }
+
+    
+
+    moveUp(){
+
+    }
+
+    moveDown(){
 
     }
 }
