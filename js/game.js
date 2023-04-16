@@ -7,7 +7,7 @@ function init() {
     world = new World(canvas, keyboard);
 }
 
-
+// Der EvenListener gibt dir die Eingegebene Taste aus. 
 window.addEventListener('keydown', (e) => {
     if (e.key == "ArrowLeft"){
         keyboard.LEFT = true;
