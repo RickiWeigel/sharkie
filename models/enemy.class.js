@@ -8,6 +8,21 @@ class Fish extends MoveableObject {
     "img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim3.png",
     "img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim4.png",
     "img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim5.png",
+    // "img/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition1.png",
+    // "img/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition2.png",
+    // "img/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition3.png",
+    // "img/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition4.png",
+    // "img/2.Enemy/1.Puffer fish (3 color options)/2.transition/1.transition5.png",
+    // "img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim1.png",
+    // "img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim2.png",
+    // "img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim3.png",
+    // "img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim4.png",
+    // "img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim5.png",
+    // "img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim1.png",
+    // "img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim2.png",
+    // "img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim3.png",
+    // "img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim4.png",
+    // "img/2.Enemy/1.Puffer fish (3 color options)/3.Bubbleeswim/1.bubbleswim5.png",
   ];
 
   constructor() {
@@ -15,7 +30,6 @@ class Fish extends MoveableObject {
       "img/2.Enemy/1.Puffer fish (3 color options)/1.Swim/1.swim1.png"
     );
     this.loadImages(this.IMAGES_FISH_SWIM);
-
     this.animateMove();
 
     this.x = 200 + Math.random() * 3600;

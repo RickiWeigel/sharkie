@@ -30,6 +30,7 @@ class World {
   canvas;
   ctx;
   keyboard;
+  camera_x = 0;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -39,15 +40,17 @@ class World {
     this.setWorld();
   }
 
-  setWorld(){
+  setWorld() {
     this.character.world = this;
   }
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.height, this.canvas.width);
+    this.ctx.translate(this.camera_x, 0);
     this.addObjectsToMap(this.backgroundobjects);
     this.addObjectsToMap(this.enemies);
     this.addToMap(this.character);
+    this.ctx.translate(-this.camera_x, 0);
 
     //Draw() wird immer wieder aufgerufen
     let self = this;
@@ -65,16 +68,16 @@ class World {
   // Zeichnet Object was übergeben wird
   addToMap(mo) {
     //Überprüft ob "otherDirection" = true ist, und spiegelt dsa Object
-    if(mo.otherDirection){
+    if (mo.otherDirection) {
       this.ctx.save(); //speichert alle Eigenschaften
       this.ctx.translate(mo.width, 0); //verschiebt das Object um die Breite, damit es an gleicher Stelle gespiegelt wird
       this.ctx.scale(-1, 1); //spiegelt das Object
-      mo.x = mo.x * -1 //spiegelt die Bewegung in andere Richtung
+      mo.x = mo.x * -1; //spiegelt die Bewegung in andere Richtung
     }
     this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
     if (mo.otherDirection) {
-      mo.x = mo.x * -1
-      this.ctx.restore()  //Stellt alle Eigenschaften die verändert wurden, wieder auf den usprünglichen Zustand
+      mo.x = mo.x * -1;
+      this.ctx.restore(); //Stellt alle Eigenschaften die verändert wurden, wieder auf den usprünglichen Zustand
     }
   }
 }
