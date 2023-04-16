@@ -62,17 +62,19 @@ class World {
     });
   }
 
+  // Zeichnet Object was übergeben wird
   addToMap(mo) {
+    //Überprüft ob "otherDirection" = true ist, und spiegelt dsa Object
     if(mo.otherDirection){
-      this.ctx.save();
-      this.ctx.translate(mo.width, 0);
-      this.ctx.scale(-1, 1);
-      mo.x = mo.x * -1
+      this.ctx.save(); //speichert alle Eigenschaften
+      this.ctx.translate(mo.width, 0); //verschiebt das Object um die Breite, damit es an gleicher Stelle gespiegelt wird
+      this.ctx.scale(-1, 1); //spiegelt das Object
+      mo.x = mo.x * -1 //spiegelt die Bewegung in andere Richtung
     }
     this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
     if (mo.otherDirection) {
       mo.x = mo.x * -1
-      this.ctx.restore()
+      this.ctx.restore()  //Stellt alle Eigenschaften die verändert wurden, wieder auf den usprünglichen Zustand
     }
   }
 }

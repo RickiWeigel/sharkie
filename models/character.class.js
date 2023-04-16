@@ -69,7 +69,7 @@ class Character extends MoveableObject {
     }, 1000 / 60);
 
     setInterval(() => {
-      if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+      if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP|| this.world.keyboard.DOWN) {
         // Swim animation
         let i = this.currentImage % this.IMAGES_SWIM.length;
         let path = this.IMAGES_SWIM[i];
