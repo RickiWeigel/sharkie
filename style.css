@@ -1,17 +1,11 @@
-body {
-    margin: 0;
-    height: 100vh;
-    width: 100vw;
+body{
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
 }
 
-canvas {
+
+canvas{
     background-color: black;
-    border-radius: 12px;
-    background: #949494;
-    box-shadow:  -7px 7px 30px #505050,
-                 7px -7px 30px #d8d8d8;
 }
