@@ -1,12 +1,14 @@
 class MoveableObject {
-    x;
-    y;
+    x = 120;
+    y = 250;
     img;
+    height = 150;
+    width = 170;
 
 
     loadImage(path){
         this.img = new Image();
-        this.image.src = path;
+        this.img.src = path;
     }
 
 
