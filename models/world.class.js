@@ -49,6 +49,7 @@ class World {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // altes canvas wird gecleart
 
     this.addObjectsToMap(this.backgroundObjects);
+  
     this.addObjectsToMap(this.enemies);
     this.addObjectsToMap(this.bubbles);
     this.addToMap(this.character);
