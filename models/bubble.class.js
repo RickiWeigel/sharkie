@@ -18,19 +18,20 @@ class Bubble extends MoveableObject {
   }
 
   rondomSizeForBubbles() {
-    this.size = 5 + Math.floor(Math.random() * 20);
+    this.size = 7 + Math.floor(Math.random() * 25);
     return this.size;
   }
 
   moveBubbleUp(bubbleSpeed) {
     setTimeout(() => {
-      const intervalID = setInterval(() => {
+      setInterval(() => {
         this.y -= bubbleSpeed;
         if (this.y <= -20) {
-          clearInterval(intervalID);
-           // Intervall stoppen, wenn die Bedingung erfüllt ist
+          this.y = 500;
+          this.x = this.rondomPositionForBubbles();
+          // clearInterval(intervalID);
         }
       }, 1000 / 60);
-    }, Math.floor(Math.random() * 10000));
+    }, Math.floor(Math.random() * 5000));
   }
 }

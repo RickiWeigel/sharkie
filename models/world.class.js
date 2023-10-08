@@ -7,35 +7,15 @@ class World {
     new BackgroundObject("img/3.Background/Layers/2.Floor/D1.png", 0, 0),
   ];
 
-  bubbles = [
-    new Bubble(),
-    new Bubble(),
-    new Bubble(),
-    new Bubble(),
-    new Bubble(),
-    new Bubble(),
-    new Bubble(),
-    new Bubble(),
-    new Bubble(),
-    new Bubble(),
-    new Bubble(),
-    new Bubble(),
-    new Bubble(),
-    new Bubble(),
-    new Bubble(),
-    new Bubble(),
-    new Bubble(),
-    new Bubble(),
-    new Bubble(),
-    new Bubble(),
-    new Bubble(),
-    new Bubble(),
-    new Bubble(),
-    new Bubble(),
-    new Bubble(),
-  ];
+  bubbles = [new Bubble(), new Bubble(), new Bubble()];
 
-  enemies = [new pufferfish(), new pufferfish(), new pufferfish()];
+  bubblesFront = [new Bubble(), new Bubble(), new Bubble()];
+
+  enemies = [
+    new pufferfish(),
+    new pufferfish(),
+    new pufferfish(),
+  ];
   ctx;
   canvas;
 
@@ -49,10 +29,12 @@ class World {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // altes canvas wird gecleart
 
     this.addObjectsToMap(this.backgroundObjects);
-  
+
     this.addObjectsToMap(this.enemies);
     this.addObjectsToMap(this.bubbles);
+
     this.addToMap(this.character);
+    this.addObjectsToMap(this.bubblesFront);
 
     //draw wird immer wieder aufgerufen.
     let self = this;
