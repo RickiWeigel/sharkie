@@ -8,7 +8,7 @@ class pufferfish extends MoveableObject {
     "img/2.Enemy/pufferfish/1.Swim/1.swim4.png",
     "img/2.Enemy/pufferfish/1.Swim/1.swim5.png",
   ];
-  speed;
+  speed = this.rondomSpeed()
 
   constructor() {
     super().loadImage("img/2.Enemy/pufferfish/1.Swim/1.swim1.png");
@@ -16,9 +16,9 @@ class pufferfish extends MoveableObject {
     this.y = this.rondomPositionY();
     this.loadImages(this.IMAGES_IDLE);
     this.animate();
-    this.move();
-    console.log()
-    this.speed = this.rondomSpeed();
+    this.move(this.speed);
+    
+    
   }
 
   animate() {
@@ -39,12 +39,12 @@ class pufferfish extends MoveableObject {
   }
 
   rondomSpeed(){
-    return Math.floor(Math.random() * 5)
+    return 1 + Math.floor(Math.random() * 4)
   }
 
-  move() {
+  move(speed) {
     setInterval(() => {
-      this.x -= 1;
+      this.x -= speed;
       if (this.x <= -20) {
         this.x = this.rondomPositionX();
         this.y = this.rondomPositionY();
