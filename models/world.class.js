@@ -15,6 +15,9 @@ class World {
     new pufferfish(),
     new pufferfish(),
     new pufferfish(),
+    new pufferfish(),
+    new pufferfish(),
+    new pufferfish(),
   ];
   ctx;
   canvas;

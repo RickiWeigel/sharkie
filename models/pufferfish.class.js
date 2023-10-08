@@ -8,20 +8,22 @@ class pufferfish extends MoveableObject {
     "img/2.Enemy/pufferfish/1.Swim/1.swim4.png",
     "img/2.Enemy/pufferfish/1.Swim/1.swim5.png",
   ];
-  speed = this.rondomSpeed()
+  
 
   constructor() {
     super().loadImage("img/2.Enemy/pufferfish/1.Swim/1.swim1.png");
     this.x = this.rondomPositionX();
     this.y = this.rondomPositionY();
     this.loadImages(this.IMAGES_IDLE);
+    this.speed = this.rondomSpeed();
+
     this.animate();
-    this.move(this.speed);
-    
     
   }
 
   animate() {
+    this.moveLeft(this.speed);
+
     setInterval(() => {
       let i = this.currentImage % this.IMAGES_IDLE.length;
       let path = this.IMAGES_IDLE[i];
@@ -30,24 +32,23 @@ class pufferfish extends MoveableObject {
     }, 150);
   }
 
-  rondomPositionY(){
-    return Math.floor(Math.random() * 410)
+  rondomPositionY() {
+    return Math.floor(Math.random() * 410);
   }
 
-  rondomPositionX(){
-    return 720 + Math.floor(Math.random() * 1450)
+  rondomPositionX() {
+    return 720 + Math.floor(Math.random() * 1450);
   }
 
-  rondomSpeed(){
-    return 1 + Math.floor(Math.random() * 4)
+  rondomSpeed() {
+    return 0.3 + Math.random() * 1.8;
   }
 
   move(speed) {
-    setInterval(() => {
+    const interval = setInterval(() => {
       this.x -= speed;
-      if (this.x <= -20) {
-        this.x = this.rondomPositionX();
-        this.y = this.rondomPositionY();
+      if (this.x <= -80) {
+        clearInterval(interval); // Das Intervall stoppen
       }
     }, 1000 / 60);
   }
