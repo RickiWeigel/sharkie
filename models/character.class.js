@@ -23,6 +23,7 @@ class Character extends MoveableObject {
     "img/1.Sharkie/1.IDLE/17.png",
     "img/1.Sharkie/1.IDLE/18.png",
   ];
+  world;
 
 
   constructor() {
@@ -33,12 +34,17 @@ class Character extends MoveableObject {
 
   animate() {
     setInterval(() => {
+      if (this.world.keyboard.RIGHT) {
+        
       let i = this.currentImage % this.IMAGES_IDLE.length;
       let path = this.IMAGES_IDLE[i];
       this.img = this.imageCache[path];
       this.currentImage++;
+      }
+
     }, 190);
   }
+
 
   attack() {}
 
