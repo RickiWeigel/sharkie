@@ -13,7 +13,7 @@ class Bubble extends MoveableObject {
   }
 
   rondomPositionForBubbles() {
-    this.positionX = 50 + Math.floor(Math.random() * 720);
+    this.positionX = 50 + Math.floor(Math.random() * 2880);
     return this.positionX;
   }
 
@@ -32,6 +32,6 @@ class Bubble extends MoveableObject {
           // clearInterval(intervalID);
         }
       }, 1000 / 60);
-    }, Math.floor(Math.random() * 5000));
+    }, Math.floor(Math.random() * 200));
   }
 }

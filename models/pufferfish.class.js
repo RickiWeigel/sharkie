@@ -22,7 +22,7 @@ class pufferfish extends MoveableObject {
   }
 
   animate() {
-    this.moveLeft(this.speed);
+    this.move(this.speed);
 
     setInterval(() => {
       let i = this.currentImage % this.IMAGES_IDLE.length;
@@ -37,17 +37,17 @@ class pufferfish extends MoveableObject {
   }
 
   rondomPositionX() {
-    return 720 + Math.floor(Math.random() * 1450);
+    return 720 + Math.floor(Math.random() * 2880);
   }
 
   rondomSpeed() {
-    return 0.3 + Math.random() * 1.8;
+    return 0.1 + Math.random() * 1.5;
   }
 
   move(speed) {
     const interval = setInterval(() => {
       this.x -= speed;
-      if (this.x <= -80) {
+      if (this.x <= -800) {
         clearInterval(interval); // Das Intervall stoppen
       }
     }, 1000 / 60);
