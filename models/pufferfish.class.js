@@ -41,7 +41,7 @@ class pufferfish extends MoveableObject {
   }
 
   rondomSpeed() {
-    return 0.1 + Math.random() * 1.5;
+    return 0.3 + Math.random() * 1.0;
   }
 
   move(speed) {
