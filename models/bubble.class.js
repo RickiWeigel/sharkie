@@ -3,6 +3,9 @@ class Bubble extends MoveableObject {
   postionX;
   size = this.rondomSizeForBubbles();
   bubbleSpeed = Math.random() * 5 + 0.5;
+  bubble_sound = new Audio('audio/bubbles.mp3');
+
+  
 
   constructor() {
     super().loadImage("img/3.Background/Layers/5.Water/bubble.png");
@@ -23,15 +26,17 @@ class Bubble extends MoveableObject {
   }
 
   moveBubbleUp(bubbleSpeed) {
+    this.bubble_sound.volume = Math.random() * 0.01;
+    this.bubble_sound.pause();
     setTimeout(() => {
       setInterval(() => {
         this.y -= bubbleSpeed;
         if (this.y <= -20) {
+          this.bubble_sound.play();
           this.y = 500;
           this.x = this.rondomPositionForBubbles();
-          // clearInterval(intervalID);
         }
       }, 1000 / 60);
-    }, Math.floor(Math.random() * 200));
+    }, 10);
   }
 }

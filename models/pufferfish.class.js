@@ -1,4 +1,4 @@
-class pufferfish extends MoveableObject {
+class Pufferfish extends MoveableObject {
   height = 70;
   width = 70;
   IMAGES_IDLE = [
@@ -25,10 +25,7 @@ class pufferfish extends MoveableObject {
     this.move(this.speed);
 
     setInterval(() => {
-      let i = this.currentImage % this.IMAGES_IDLE.length;
-      let path = this.IMAGES_IDLE[i];
-      this.img = this.imageCache[path];
-      this.currentImage++;
+      this.playAnimaton(this.IMAGES_IDLE);
     }, 150);
   }
 
