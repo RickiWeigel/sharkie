@@ -1,7 +1,6 @@
 class World {
   character = new Character();
   level = level1;
-
   ctx;
   canvas;
   keyboard;
@@ -39,7 +38,8 @@ class World {
       this.flipImage(mo);
     }
 
-    this.ctx.drawImage(mo.img, mo.x, mo.y, mo.width, mo.height);
+    mo.draw(this.ctx);
+    mo.drawFrame(this.ctx);
 
     if (mo.otherDirection) {
       this.flipImageBack(mo);

@@ -22,7 +22,25 @@ class MoveableObject {
     });
   }
 
-  playAnimaton(images){
+  draw(ctx) {
+    ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+  }
+
+  drawFrame(ctx) {
+    if (
+      this instanceof Character ||
+      this instanceof Pufferfish ||
+      this instanceof Endboss
+    ) {
+      ctx.beginPath();
+      ctx.rect(this.x, this.y, this.width, this.height);
+      ctx.strokeStyle = "red"; // Farbe des Rahmens
+      ctx.lineWidth = 2; // Breite des Rahmens
+      ctx.stroke();
+    }
+  }
+
+  playAnimaton(images) {
     let i = this.currentImage % images.length;
     let path = images[i];
     this.img = this.imageCache[path];
