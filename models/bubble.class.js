@@ -32,7 +32,7 @@ class Bubble extends MoveableObject {
       setInterval(() => {
         this.y -= bubbleSpeed;
         if (this.y <= -20) {
-          this.bubble_sound.play();
+          // this.bubble_sound.play();
           this.y = 500;
           this.x = this.rondomPositionForBubbles();
         }

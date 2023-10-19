@@ -12,10 +12,21 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
+    this.checkCollisions();
   }
 
   setWorld() {
     this.character.world = this;
+  }
+
+  checkCollisions() {
+    setInterval(() => {
+      this.level.enemies.forEach((enemy) => {
+        if (this.character.isColliding(enemy)) {
+          console.log("hit");
+        }
+      });
+    }, 1000/60);
   }
 
   draw() {
@@ -39,7 +50,7 @@ class World {
     }
 
     mo.draw(this.ctx);
-    mo.drawFrame(this.ctx);
+    mo.drawHitbox(this.ctx);
 
     if (mo.otherDirection) {
       this.flipImageBack(mo);

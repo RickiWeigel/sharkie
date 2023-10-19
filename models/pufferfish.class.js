@@ -8,6 +8,12 @@ class Pufferfish extends MoveableObject {
     "img/2.Enemy/pufferfish/1.Swim/1.swim4.png",
     "img/2.Enemy/pufferfish/1.Swim/1.swim5.png",
   ];
+  offset = {
+    top: 5,
+    left: 0,
+    right: 0,
+    bottom: 23,
+  };
   
 
   constructor() {

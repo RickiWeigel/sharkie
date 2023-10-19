@@ -1,5 +1,5 @@
 class Endboss extends MoveableObject {
-    y = 0;
+    y = 50;
     x = 720*3.4;
     speed = 6;
     height = 350;
@@ -20,6 +20,13 @@ class Endboss extends MoveableObject {
     "img/2.Enemy/finalEnemy/2.floating/12.png",
     "img/2.Enemy/finalEnemy/2.floating/13.png",
   ]
+
+  offset = {
+    top: 120,
+    left: 10,
+    right: 30,
+    bottom: 170,
+  };
 
 constructor() {
     super().loadImage(this.IMAGES_FLOATING[0]);

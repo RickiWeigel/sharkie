@@ -35,6 +35,12 @@ class Character extends MoveableObject {
   ];
   world;
   swim_sound = new Audio('audio/swim.mp3');
+  offset = {
+    top: 115,
+    left: 50,
+    right: 100,
+    bottom: 168,
+  };
 
 
   constructor() {

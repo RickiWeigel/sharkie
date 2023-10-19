@@ -8,6 +8,12 @@ class MoveableObject {
   currentImage = 0;
   speed = 0.2;
   otherDirection = false;
+  offset = {
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  };
 
   loadImage(path) {
     this.img = new Image();
@@ -26,18 +32,32 @@ class MoveableObject {
     ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
   }
 
-  drawFrame(ctx) {
+  drawHitbox(ctx) {
     if (
       this instanceof Character ||
       this instanceof Pufferfish ||
       this instanceof Endboss
     ) {
       ctx.beginPath();
-      ctx.rect(this.x, this.y, this.width, this.height);
+      ctx.rect(
+        this.x + this.offset.left,
+        this.y + this.offset.top,
+        this.width - this.offset.right,
+        this.height - this.offset.bottom
+      );
       ctx.strokeStyle = "red"; // Farbe des Rahmens
       ctx.lineWidth = 2; // Breite des Rahmens
       ctx.stroke();
     }
+  }
+
+  isColliding(mo) {
+    return (
+      this.x + this.offset.left + this.width - this.offset.right >= mo.x + mo.offset.left &&
+      this.y + this.offset.top + this.height - this.offset.bottom >= mo.y + mo.offset.top &&
+      this.x + this.offset.left <= mo.x + mo.width - mo.offset.right &&
+      this.y + this.offset.top <= mo.y + mo.height - mo.offset.bottom
+    );
   }
 
   playAnimaton(images) {
