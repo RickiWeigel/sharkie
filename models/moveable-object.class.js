@@ -14,6 +14,8 @@ class MoveableObject {
     right: 0,
     bottom: 0,
   };
+  healthPoints = 100;
+  death = false;
 
   loadImage(path) {
     this.img = new Image();
