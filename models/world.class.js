@@ -23,29 +23,13 @@ class World {
     setInterval(() => {
       this.level.enemies.forEach((enemy) => {
         if (this.character.isColliding(enemy)) {
-          this.checkHealthPoints();
+          this.character.hit();
+          console.log(this.character.healthPoints)
         }
       });
     }, 200);
   }
 
-  checkHealthPoints() {
-    if (this.character.healthPoints <= 0) {
-      this.character.dead = true;
-    } else {
-      this.hit();
-    }
-    console.log(this.character.healthPoints);
-    console.log(this.character.dead);
-  }
-
-  hit(){
-    this.healthPoints -= 5;
-    if (this.healthPoints <0 ) {
-      this.healthPoints = 0;      
-    }
-
-  }
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // altes canvas wird gecleart

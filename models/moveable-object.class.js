@@ -15,7 +15,7 @@ class MoveableObject {
     bottom: 0,
   };
   healthPoints = 100;
-  dead = false;
+  lastHit = 0;
 
   loadImage(path) {
     this.img = new Image();
@@ -64,20 +64,39 @@ class MoveableObject {
     );
   }
 
-  playAnimaton(images) {
+  hit() {
+    this.healthPoints -= 5;
+    if (this.healthPoints < 0) {
+      this.healthPoints = 0;
+    } else {
+      this.lastHit = new Date().getTime(); //speichert die Zeit 
+    }
+  }
+
+  isHurt(){
+    let timePassed = new Date().getTime() - this.lastHit; // Rechnet die Differenz der Zeit vom letzten Hit zur aktuellen Zeit 
+    timePassed = timePassed / 1000;
+    return timePassed < 1;
+  }
+
+  isDead(){
+    return this.healthPoints == 0;
+  }
+
+
+  playAnimation(images) {
     let i = this.currentImage % images.length;
     let path = images[i];
     this.img = this.imageCache[path];
     this.currentImage++;
   }
 
-  playEndAnimation(images) {
-    for (let i = 0; i < images.length; i++) {
-      let path = images[i];
-      console.log(path)
-      this.img = this.imageCache[path];
-    }
-  }
+  // playEndAnimation(images) {
+  //   for (let i = 0; i < images.length; i++) {
+  //     let path = images[i];
+  //     this.img = this.imageCache[path];
+  //   }
+  // }
 
   moveRight() {
     this.x += this.speed;
