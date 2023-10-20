@@ -4,6 +4,7 @@ class Character extends MoveableObject {
   speed = 6;
   height = 250;
   width = 270;
+  deadTime = 0;
   IMAGES_IDLE = [
     "img/1.Sharkie/1.IDLE/1.png",
     "img/1.Sharkie/1.IDLE/2.png",
@@ -46,7 +47,14 @@ class Character extends MoveableObject {
     "img/1.Sharkie/6.dead/1.Poisoned/9.png",
     "img/1.Sharkie/6.dead/1.Poisoned/10.png",
     "img/1.Sharkie/6.dead/1.Poisoned/11.png",
-    "img/1.Sharkie/6.dead/1.Poisoned/12.png",
+    'img/1.Sharkie/6.dead/1.Poisoned/12.png',
+  ];
+
+  IMAGES_HURT = [
+    "img/1.Sharkie/5.Hurt/1.Poisoned/2.png",
+    "img/1.Sharkie/5.Hurt/1.Poisoned/3.png",
+    "img/1.Sharkie/5.Hurt/1.Poisoned/4.png",
+    "img/1.Sharkie/5.Hurt/1.Poisoned/5.png",
   ];
 
   world;
@@ -63,6 +71,7 @@ class Character extends MoveableObject {
     this.loadImages(this.IMAGES_IDLE);
     this.loadImages(this.IMAGES_SWIM);
     this.loadImages(this.IMAGES_DEAD);
+    this.loadImages(this.IMAGES_HURT);
     this.animate();
   }
 
@@ -70,7 +79,7 @@ class Character extends MoveableObject {
     this.swim_sound.pause();
     this.swim_sound.volume = 0.03;
     setInterval(() => {
-      if (!this.dead) {
+      if (!this.isDead()) {
         if (this.world.keyboard.RIGHT && this.x < level1.level_end_x) {
           this.swim_sound.play();
           this.moveRight();
@@ -101,23 +110,35 @@ class Character extends MoveableObject {
     }, 1000 / 60);
 
     setInterval(() => {
-      if (this.dead) {
-        this.playEndAnimation(this.IMAGES_DEAD)
-        if (this.y > -70) {
-          this.y -= 10
-        }
+      if (this.isDead()) {
+        this.deadAnimation();
+        
+      } else if (this.isHurt()) {
+        this.playAnimation(this.IMAGES_HURT);
       } else if (
         this.world.keyboard.RIGHT ||
         this.world.keyboard.LEFT ||
         this.world.keyboard.UP ||
         this.world.keyboard.DOWN
       ) {
-        this.playAnimaton(this.IMAGES_SWIM);
+        this.playAnimation(this.IMAGES_SWIM);
       } else {
-        this.playAnimaton(this.IMAGES_IDLE);
+        this.playAnimation(this.IMAGES_IDLE);
       }
-    }, 150);
+    }, 1000/7);
   }
+
+  deadAnimation() {
+    if (this.deadTime >= 10) {
+        this.loadImage(this.IMAGES_DEAD[11]);
+    } else {
+        this.playAnimation(this.IMAGES_DEAD);
+    }
+    if (this.y > -70) {
+      this.y -= 10;
+    }
+    this.deadTime++;
+}
 
   attack() {}
 
