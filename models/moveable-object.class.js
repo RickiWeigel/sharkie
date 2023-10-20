@@ -15,7 +15,7 @@ class MoveableObject {
     bottom: 0,
   };
   healthPoints = 100;
-  death = false;
+  dead = false;
 
   loadImage(path) {
     this.img = new Image();
@@ -55,8 +55,10 @@ class MoveableObject {
 
   isColliding(mo) {
     return (
-      this.x + this.offset.left + this.width - this.offset.right >= mo.x + mo.offset.left &&
-      this.y + this.offset.top + this.height - this.offset.bottom >= mo.y + mo.offset.top &&
+      this.x + this.offset.left + this.width - this.offset.right >=
+        mo.x + mo.offset.left &&
+      this.y + this.offset.top + this.height - this.offset.bottom >=
+        mo.y + mo.offset.top &&
       this.x + this.offset.left <= mo.x + mo.width - mo.offset.right &&
       this.y + this.offset.top <= mo.y + mo.height - mo.offset.bottom
     );
@@ -67,6 +69,14 @@ class MoveableObject {
     let path = images[i];
     this.img = this.imageCache[path];
     this.currentImage++;
+  }
+
+  playEndAnimation(images) {
+    for (let i = 0; i < images.length; i++) {
+      let path = images[i];
+      console.log(path)
+      this.img = this.imageCache[path];
+    }
   }
 
   moveRight() {

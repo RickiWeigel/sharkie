@@ -31,12 +31,20 @@ class World {
 
   checkHealthPoints() {
     if (this.character.healthPoints <= 0) {
-      this.character.death = true;
+      this.character.dead = true;
     } else {
-      this.character.healthPoints -= 2;
+      this.hit();
     }
     console.log(this.character.healthPoints);
-    console.log(this.character.death);
+    console.log(this.character.dead);
+  }
+
+  hit(){
+    this.healthPoints -= 5;
+    if (this.healthPoints <0 ) {
+      this.healthPoints = 0;      
+    }
+
   }
 
   draw() {
