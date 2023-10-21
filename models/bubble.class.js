@@ -1,4 +1,4 @@
-class Bubble extends MoveableObject {
+class Bubble extends MovableObject {
   y = 500;
   postionX;
   size = this.rondomSizeForBubbles();

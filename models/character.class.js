@@ -1,4 +1,4 @@
-class Character extends MoveableObject {
+class Character extends MovableObject {
   y = 170;
   x = 0;
   speed = 6;
@@ -125,7 +125,7 @@ class Character extends MoveableObject {
       } else {
         this.playAnimation(this.IMAGES_IDLE);
       }
-    }, 1000/7);
+    }, 1000/8);
   }
 
   deadAnimation() {

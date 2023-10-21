@@ -1,4 +1,4 @@
-class Pufferfish extends MoveableObject {
+class Pufferfish extends MovableObject {
   height = 70;
   width = 70;
   IMAGES_IDLE = [
