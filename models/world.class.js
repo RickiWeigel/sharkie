@@ -1,5 +1,6 @@
 class World {
   character = new Character();
+  statusBar = new Statusbar();
   level = level1;
   ctx;
   canvas;
@@ -38,6 +39,7 @@ class World {
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.level.bubbles);
     this.addToMap(this.character);
+    this.addToMap(this.statusBar);
     this.ctx.translate(-this.camera_x, 0);
     //draw wird immer wieder aufgerufen.
     let self = this;
