@@ -94,7 +94,7 @@ class Character extends MovableObject {
 
         if (this.world.keyboard.UP) {
           this.swim_sound.play();
-          if (this.y > -110) {
+          if (this.y > -80) {
             this.moveUp();
           }
         }

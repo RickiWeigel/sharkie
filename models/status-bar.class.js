@@ -13,29 +13,29 @@ class Statusbar extends DrawableObjects {
   constructor() {
     super();
     this.loadImages(this.IMAGES_STATUSBAR);
-    this.x = 100;
-    this.y = 100;
-    this.width = 250;
-    this.height = 90;
+    this.x = 0;
+    this.y = -10;
+    this.width = 180;
+    this.height = 50;
     this.setPercentage(100);
   }
 
   setPercentage(percentage) {
     this.percentage = percentage;
-    let path = this.IMAGES_STATUSBAR[this.resolveImageIndex()]
-    this.img = this.imageCache[path]
+    let path = this.IMAGES_STATUSBAR[this.resolveImageIndex()];
+    this.img = this.imageCache[path];
   }
 
   resolveImageIndex() {
-    if (this.percentage == 100) {
+    if (this.percentage > 80) {
       return 5;
-    } else if (this.percentage > 80) {
+    } else if (this.percentage <= 80 && this.percentage > 60) {
       return 4;
-    } else if (this.percentage > 60) {
+    } else if (this.percentage <= 60 && this.percentage > 40) {
       return 3;
-    } else if (this.percentage > 40) {
+    } else if (this.percentage <= 40 && this.percentage > 20) {
       return 2;
-    } else if (this.percentage > 20) {
+    } else if (this.percentage <= 20 && this.percentage > 5) {
       return 1;
     } else {
       return 0;

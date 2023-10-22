@@ -25,22 +25,24 @@ class World {
       this.level.enemies.forEach((enemy) => {
         if (this.character.isColliding(enemy)) {
           this.character.hit();
-          console.log(this.character.healthPoints)
+          this.statusBar.setPercentage(this.character.healthPoints);
+          console.log(this.character.healthPoints);
         }
       });
     }, 200);
   }
 
-
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // altes canvas wird gecleart
+
     this.ctx.translate(this.camera_x, 0);
     this.addObjectsToMap(this.level.backgroundObjects);
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.level.bubbles);
     this.addToMap(this.character);
-    this.addToMap(this.statusBar);
     this.ctx.translate(-this.camera_x, 0);
+
+    this.addToMap(this.statusBar);
     //draw wird immer wieder aufgerufen.
     let self = this;
     requestAnimationFrame(function () {
