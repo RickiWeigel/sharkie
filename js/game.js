@@ -20,6 +20,9 @@ window.addEventListener("keydown", (e) => {
   if (e.key == "ArrowDown" || e.key == "s") {
     keyboard.DOWN = true;
   }
+  if (e.key == "ArrowDown" || e.key == " ") {
+    keyboard.SPACE = true;
+  }
 
 });
 
@@ -35,5 +38,8 @@ window.addEventListener("keyup", (e) =>{
   }
   if (e.key == "ArrowDown" || e.key == "s") {
    keyboard.DOWN = false;
+  }
+  if (e.key == "ArrowDown" || e.key == " ") {
+    keyboard.SPACE = false;
   }
  });

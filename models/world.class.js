@@ -1,6 +1,7 @@
 class World {
   character = new Character();
   statusBar = new Statusbar();
+  ThrowableObject = [new ThrowableObject(),]
   level = level1;
   ctx;
   canvas;
