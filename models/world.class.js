@@ -1,7 +1,7 @@
 class World {
   character = new Character();
   statusBar = new Statusbar();
-  ThrowableObject = [new ThrowableObject(),]
+  throwableObject = [];
   level = level1;
   ctx;
   canvas;
@@ -14,23 +14,35 @@ class World {
     this.keyboard = keyboard;
     this.draw();
     this.setWorld();
-    this.checkCollisions();
+    this.run();
   }
 
   setWorld() {
     this.character.world = this;
   }
 
-  checkCollisions() {
+  run() {
     setInterval(() => {
-      this.level.enemies.forEach((enemy) => {
+      this.checkBubbleShot();
+      this.checkCollisions();
+    }, 200);
+  }
+
+  checkBubbleShot(){
+    if (this.keyboard.SPACE) {
+      let bubble = new ThrowableObject(this.character.x, this.character.y);
+      this.throwableObject.push(bubble);
+    }
+  }
+
+  checkCollisions(){
+    this.level.enemies.forEach((enemy) => {
         if (this.character.isColliding(enemy)) {
           this.character.hit();
           this.statusBar.setPercentage(this.character.healthPoints);
           console.log(this.character.healthPoints);
         }
       });
-    }, 200);
   }
 
   draw() {
@@ -41,6 +53,8 @@ class World {
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.level.bubbles);
     this.addToMap(this.character);
+    this.addObjectsToMap(this.throwableObject);
+
     this.ctx.translate(-this.camera_x, 0);
 
     this.addToMap(this.statusBar);

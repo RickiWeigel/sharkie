@@ -9,6 +9,8 @@ class MovableObject extends DrawableObjects {
   };
   healthPoints = 100;
   lastHit = 0;
+  height;
+  width;
 
   isColliding(mo) {
     return (
