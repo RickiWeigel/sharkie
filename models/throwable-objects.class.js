@@ -1,5 +1,6 @@
 class ThrowableObject extends MovableObject {
   IMAGES_;
+  speed = 7;
 
   constructor(x, y) {
     super().loadImage(
@@ -9,14 +10,26 @@ class ThrowableObject extends MovableObject {
     this.height = 25;
     this.x = x;
     this.y = y;
-    this.bubbleShot()
+    this.bubbling();
+  }
+
+  bubbling(){
+    this.checkdirection();
+    this.bubbleShot();
   }
 
   bubbleShot() {
-    this.speed = 10;
     setInterval(() => {
-        this.moveRight(); 
+        this.x += this.speed;
     }, 1000/60);
-   
   }
+
+  checkdirection() {
+    if (world.character.otherDirection) {
+        this.speed = -this.speed;
+        this.x = this.x - 150;
+    }
+}
+
+
 }

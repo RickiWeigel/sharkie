@@ -36,7 +36,7 @@ class Pufferfish extends MovableObject {
   }
 
   rondomPositionY() {
-    return Math.floor(Math.random() * 410);
+    return 50+Math.floor(Math.random() * 410);
   }
 
   rondomPositionX() {

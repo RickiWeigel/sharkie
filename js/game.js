@@ -20,10 +20,10 @@ window.addEventListener("keydown", (e) => {
   if (e.key == "ArrowDown" || e.key == "s") {
     keyboard.DOWN = true;
   }
-  if (e.key == "ArrowDown" || e.key == " ") {
+  if (e.key == " ") {
     keyboard.SPACE = true;
   }
-  if (e.key == "ArrowDown" || e.key == "e") {
+  if (e.key == "e") {
     keyboard.E = true;
   }
 
@@ -42,10 +42,10 @@ window.addEventListener("keyup", (e) =>{
   if (e.key == "ArrowDown" || e.key == "s") {
    keyboard.DOWN = false;
   }
-  if (e.key == "ArrowDown" || e.key == " ") {
+  if (e.key == " ") {
     keyboard.SPACE = false;
   }
-  if (e.key == "ArrowDown" || e.key == "e") {
+  if (e.key == "e") {
     keyboard.E = false;
   }
  });
