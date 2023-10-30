@@ -28,23 +28,26 @@ class World {
     }, 200);
   }
 
-  checkBubbleShot(){
+  checkBubbleShot() {
     if (this.keyboard.SPACE) {
-      let bubble = new ThrowableObject(this.character.x + 200, this.character.y + 160);
-      this.throwableObject.push(bubble);
+      setTimeout(() => {
+        let bubble = new ThrowableObject(
+          this.character.x + 200,
+          this.character.y + 160
+        );
+        this.throwableObject.push(bubble);
+      }, 500);
     }
   }
 
-  checkCollisions(){
+  checkCollisions() {
     this.level.enemies.forEach((enemy) => {
-        if (this.character.isColliding(enemy)) {
-          this.character.hit();
-          this.statusBar.setPercentage(this.character.healthPoints);
-        }
-      });
+      if (this.character.isColliding(enemy)) {
+        this.character.hit();
+        this.statusBar.setPercentage(this.character.healthPoints);
+      }
+    });
   }
-
-  
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // altes canvas wird gecleart

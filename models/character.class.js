@@ -57,6 +57,17 @@ class Character extends MovableObject {
     "img/1.Sharkie/5.Hurt/1.Poisoned/5.png",
   ];
 
+  IMAGES_BUBBLE_SHOT = [
+    'img/1.Sharkie/4.Attack/Bubble trap/For Whale/1.png',
+    'img/1.Sharkie/4.Attack/Bubble trap/For Whale/2.png',
+    'img/1.Sharkie/4.Attack/Bubble trap/For Whale/3.png',
+    'img/1.Sharkie/4.Attack/Bubble trap/For Whale/4.png',
+    'img/1.Sharkie/4.Attack/Bubble trap/For Whale/5.png',
+    'img/1.Sharkie/4.Attack/Bubble trap/For Whale/6.png',
+    'img/1.Sharkie/4.Attack/Bubble trap/For Whale/7.png',
+    'img/1.Sharkie/4.Attack/Bubble trap/For Whale/8.png',
+  ]
+
   world;
   swim_sound = new Audio("audio/swim.mp3");
   offset = {
@@ -72,6 +83,7 @@ class Character extends MovableObject {
     this.loadImages(this.IMAGES_SWIM);
     this.loadImages(this.IMAGES_DEAD);
     this.loadImages(this.IMAGES_HURT);
+    this.loadImages(this.IMAGES_BUBBLE_SHOT);
     this.animate();
   }
 
@@ -142,7 +154,9 @@ class Character extends MovableObject {
     this.deadTime++;
 }
 
-  attack() {}
+  bubbleShotAnimation() {
+    this.playAnimation(this.)
+  }
 
   slap() {}
 }
