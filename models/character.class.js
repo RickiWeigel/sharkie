@@ -155,7 +155,6 @@ class Character extends MovableObject {
 }
 
   bubbleShotAnimation() {
-    this.playAnimation(this.)
   }
 
   slap() {}
