@@ -14,7 +14,6 @@ class Pufferfish extends MovableObject {
     right: 0,
     bottom: 23,
   };
-  
 
   constructor() {
     super().loadImage("img/2.Enemy/pufferfish/1.Swim/1.swim1.png");
@@ -24,7 +23,6 @@ class Pufferfish extends MovableObject {
     this.speed = this.rondomSpeed();
 
     this.animate();
-    
   }
 
   animate() {
@@ -36,7 +34,7 @@ class Pufferfish extends MovableObject {
   }
 
   rondomPositionY() {
-    return 50+Math.floor(Math.random() * 410);
+    return 50 + Math.floor(Math.random() * 410);
   }
 
   rondomPositionX() {

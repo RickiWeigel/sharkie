@@ -40,10 +40,11 @@ class World {
         if (this.character.isColliding(enemy)) {
           this.character.hit();
           this.statusBar.setPercentage(this.character.healthPoints);
-          console.log(this.character.healthPoints);
         }
       });
   }
+
+  
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // altes canvas wird gecleart
