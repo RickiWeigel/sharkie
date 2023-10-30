@@ -44,6 +44,7 @@ window.addEventListener("keyup", (e) =>{
   }
   if (e.key == " ") {
       keyboard.SPACE = false;
+
   }
   if (e.key == "e") {
     keyboard.E = false;

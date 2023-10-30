@@ -30,6 +30,7 @@ class World {
 
   checkBubbleShot() {
     if (this.keyboard.SPACE) {
+      this.character.bubbleShotAnimation();
       setTimeout(() => {
         let bubble = new ThrowableObject(
           this.character.x + 200,

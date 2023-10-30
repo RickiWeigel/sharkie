@@ -26,6 +26,33 @@ class Character extends MovableObject {
     "img/1.Sharkie/1.IDLE/18.png",
   ];
 
+  IMAGES_LONG_IDLE = [
+    'img/1.Sharkie/2.Long_IDLE/i1.png',
+    'img/1.Sharkie/2.Long_IDLE/i2.png',
+    'img/1.Sharkie/2.Long_IDLE/i3.png',
+    'img/1.Sharkie/2.Long_IDLE/i4.png',
+    'img/1.Sharkie/2.Long_IDLE/i5.png',
+    'img/1.Sharkie/2.Long_IDLE/i6.png',
+    'img/1.Sharkie/2.Long_IDLE/i7.png',
+    'img/1.Sharkie/2.Long_IDLE/i8.png',
+    'img/1.Sharkie/2.Long_IDLE/i9.png',
+    'img/1.Sharkie/2.Long_IDLE/i10.png',
+    'img/1.Sharkie/2.Long_IDLE/i11.png',
+    'img/1.Sharkie/2.Long_IDLE/i12.png',
+    'img/1.Sharkie/2.Long_IDLE/i13.png',
+    'img/1.Sharkie/2.Long_IDLE/i14.png',
+  ]
+
+  IMAGES_SLEEP= [
+    'img/1.Sharkie/2.Long_IDLE/i11.png',
+    'img/1.Sharkie/2.Long_IDLE/i11.png',
+    'img/1.Sharkie/2.Long_IDLE/i12.png',
+    'img/1.Sharkie/2.Long_IDLE/i12.png',
+    'img/1.Sharkie/2.Long_IDLE/i13.png',
+    'img/1.Sharkie/2.Long_IDLE/i13.png',
+
+  ]
+
   IMAGES_SWIM = [
     "img/1.Sharkie/3.Swim/1.png",
     "img/1.Sharkie/3.Swim/2.png",
@@ -47,7 +74,7 @@ class Character extends MovableObject {
     "img/1.Sharkie/6.dead/1.Poisoned/9.png",
     "img/1.Sharkie/6.dead/1.Poisoned/10.png",
     "img/1.Sharkie/6.dead/1.Poisoned/11.png",
-    'img/1.Sharkie/6.dead/1.Poisoned/12.png',
+    "img/1.Sharkie/6.dead/1.Poisoned/12.png",
   ];
 
   IMAGES_HURT = [
@@ -58,15 +85,17 @@ class Character extends MovableObject {
   ];
 
   IMAGES_BUBBLE_SHOT = [
-    'img/1.Sharkie/4.Attack/Bubble trap/For Whale/1.png',
-    'img/1.Sharkie/4.Attack/Bubble trap/For Whale/2.png',
-    'img/1.Sharkie/4.Attack/Bubble trap/For Whale/3.png',
-    'img/1.Sharkie/4.Attack/Bubble trap/For Whale/4.png',
-    'img/1.Sharkie/4.Attack/Bubble trap/For Whale/5.png',
-    'img/1.Sharkie/4.Attack/Bubble trap/For Whale/6.png',
-    'img/1.Sharkie/4.Attack/Bubble trap/For Whale/7.png',
-    'img/1.Sharkie/4.Attack/Bubble trap/For Whale/8.png',
-  ]
+    "img/1.Sharkie/4.Attack/Bubble trap/For Whale/1.png",
+    "img/1.Sharkie/4.Attack/Bubble trap/For Whale/2.png",
+    "img/1.Sharkie/4.Attack/Bubble trap/For Whale/3.png",
+    "img/1.Sharkie/4.Attack/Bubble trap/For Whale/4.png",
+    "img/1.Sharkie/4.Attack/Bubble trap/For Whale/5.png",
+    "img/1.Sharkie/4.Attack/Bubble trap/For Whale/6.png",
+    "img/1.Sharkie/4.Attack/Bubble trap/For Whale/7.png",
+    "img/1.Sharkie/4.Attack/Bubble trap/For Whale/8.png",
+  ];
+
+  lastMove = 0;
 
   world;
   swim_sound = new Audio("audio/swim.mp3");
@@ -80,11 +109,14 @@ class Character extends MovableObject {
   constructor() {
     super().loadImage("img/1.Sharkie/1.IDLE/1.png");
     this.loadImages(this.IMAGES_IDLE);
+    this.loadImages(this.IMAGES_LONG_IDLE);
+    this.loadImages(this.IMAGES_SLEEP);
     this.loadImages(this.IMAGES_SWIM);
     this.loadImages(this.IMAGES_DEAD);
     this.loadImages(this.IMAGES_HURT);
     this.loadImages(this.IMAGES_BUBBLE_SHOT);
     this.animate();
+    this.lastMove = new Date().getTime();
   }
 
   animate() {
@@ -96,18 +128,21 @@ class Character extends MovableObject {
           this.swim_sound.play();
           this.moveRight();
           this.otherDirection = false;
+          this.lastMove = new Date().getTime();
         }
 
         if (this.world.keyboard.LEFT && this.x > 0) {
           this.swim_sound.play();
           this.moveLeft();
           this.otherDirection = true;
+          this.lastMove = new Date().getTime();
         }
 
         if (this.world.keyboard.UP) {
           this.swim_sound.play();
           if (this.y > -80) {
             this.moveUp();
+            this.lastMove = new Date().getTime();
           }
         }
 
@@ -115,46 +150,75 @@ class Character extends MovableObject {
           this.swim_sound.play();
           if (this.y < 280) {
             this.moveDown();
+            this.lastMove = new Date().getTime();
           }
+        }
+
+        if (this.world.keyboard.SPACE) {
+            this.lastMove = new Date().getTime();
         }
         this.world.camera_x = -this.x + 50;
       }
     }, 1000 / 60);
 
-  
-
     setInterval(() => {
-      if (this.isDead()) {
-        this.deadAnimation();
-        
-      } else if (this.isHurt()) {
-        this.playAnimation(this.IMAGES_HURT);
-      } else if (
-        this.world.keyboard.RIGHT ||
-        this.world.keyboard.LEFT ||
-        this.world.keyboard.UP ||
-        this.world.keyboard.DOWN
-      ) {
-        this.playAnimation(this.IMAGES_SWIM);
+      if (!this.checkLastMove(5) && !this.isDead() &&!this.isHurt()) {
+        this.longIdleAnimation();
       } else {
-        this.playAnimation(this.IMAGES_IDLE);
+        if (this.isDead()) {
+          this.deadAnimation();
+        } else if (this.isHurt()) {
+          this.playAnimation(this.IMAGES_HURT);
+        } else if (
+          this.world.keyboard.RIGHT ||
+          this.world.keyboard.LEFT ||
+          this.world.keyboard.UP ||
+          this.world.keyboard.DOWN
+        ) {
+          this.playAnimation(this.IMAGES_SWIM);
+        } else if (this.world.keyboard.SPACE) {
+          this.bubbleShotAnimation();
+        }
+         else {
+          this.playAnimation(this.IMAGES_IDLE);
+        }
       }
-    }, 1000/8);
+    }, 1000 / 6);
   }
 
   deadAnimation() {
     if (this.deadTime >= 10) {
-        this.loadImage(this.IMAGES_DEAD[11]);
+      this.loadImage(this.IMAGES_DEAD[11]);
     } else {
-        this.playAnimation(this.IMAGES_DEAD);
+      this.playAnimation(this.IMAGES_DEAD);
     }
     if (this.y > -70) {
       this.y -= 10;
     }
     this.deadTime++;
-}
+  }
+
+  longIdleAnimation() {
+    if (this.deadTime >= 12) {
+      this.loadImage(this.IMAGES_LONG_IDLE[13]);
+      this.playAnimation(this.IMAGES_SLEEP);
+    } else {
+      this.playAnimation(this.IMAGES_LONG_IDLE);
+    }
+    if (this.y <250) {
+      this.y += 10;
+    }
+    this.deadTime++;
+  }
+
+  checkLastMove(timeInSek) {
+    let timePassed = new Date().getTime() - this.lastMove; // Rechnet die Differenz der Zeit vom letzten move zur aktuellen Zeit
+    timePassed = timePassed / 1000;
+    return timePassed < timeInSek;
+  }
 
   bubbleShotAnimation() {
+      this.playAnimation(this.IMAGES_BUBBLE_SHOT);
   }
 
   slap() {}
