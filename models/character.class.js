@@ -27,31 +27,30 @@ class Character extends MovableObject {
   ];
 
   IMAGES_LONG_IDLE = [
-    'img/1.Sharkie/2.Long_IDLE/i1.png',
-    'img/1.Sharkie/2.Long_IDLE/i2.png',
-    'img/1.Sharkie/2.Long_IDLE/i3.png',
-    'img/1.Sharkie/2.Long_IDLE/i4.png',
-    'img/1.Sharkie/2.Long_IDLE/i5.png',
-    'img/1.Sharkie/2.Long_IDLE/i6.png',
-    'img/1.Sharkie/2.Long_IDLE/i7.png',
-    'img/1.Sharkie/2.Long_IDLE/i8.png',
-    'img/1.Sharkie/2.Long_IDLE/i9.png',
-    'img/1.Sharkie/2.Long_IDLE/i10.png',
-    'img/1.Sharkie/2.Long_IDLE/i11.png',
-    'img/1.Sharkie/2.Long_IDLE/i12.png',
-    'img/1.Sharkie/2.Long_IDLE/i13.png',
-    'img/1.Sharkie/2.Long_IDLE/i14.png',
-  ]
+    "img/1.Sharkie/2.Long_IDLE/i1.png",
+    "img/1.Sharkie/2.Long_IDLE/I2.png",
+    "img/1.Sharkie/2.Long_IDLE/I3.png",
+    "img/1.Sharkie/2.Long_IDLE/I4.png",
+    "img/1.Sharkie/2.Long_IDLE/I5.png",
+    "img/1.Sharkie/2.Long_IDLE/I6.png",
+    "img/1.Sharkie/2.Long_IDLE/I7.png",
+    "img/1.Sharkie/2.Long_IDLE/I8.png",
+    "img/1.Sharkie/2.Long_IDLE/I9.png",
+    "img/1.Sharkie/2.Long_IDLE/I10.png",
+    "img/1.Sharkie/2.Long_IDLE/I11.png",
+    "img/1.Sharkie/2.Long_IDLE/I12.png",
+    "img/1.Sharkie/2.Long_IDLE/I13.png",
+    "img/1.Sharkie/2.Long_IDLE/I14.png",
+  ];
 
-  IMAGES_SLEEP= [
-    'img/1.Sharkie/2.Long_IDLE/i11.png',
-    'img/1.Sharkie/2.Long_IDLE/i11.png',
-    'img/1.Sharkie/2.Long_IDLE/i12.png',
-    'img/1.Sharkie/2.Long_IDLE/i12.png',
-    'img/1.Sharkie/2.Long_IDLE/i13.png',
-    'img/1.Sharkie/2.Long_IDLE/i13.png',
-
-  ]
+  IMAGES_SLEEP = [
+    "img/1.Sharkie/2.Long_IDLE/I11.png",
+    "img/1.Sharkie/2.Long_IDLE/I11.png",
+    "img/1.Sharkie/2.Long_IDLE/I12.png",
+    "img/1.Sharkie/2.Long_IDLE/I12.png",
+    "img/1.Sharkie/2.Long_IDLE/I13.png",
+    "img/1.Sharkie/2.Long_IDLE/I13.png",
+  ];
 
   IMAGES_SWIM = [
     "img/1.Sharkie/3.Swim/1.png",
@@ -155,14 +154,14 @@ class Character extends MovableObject {
         }
 
         if (this.world.keyboard.SPACE) {
-            this.lastMove = new Date().getTime();
+          this.lastMove = new Date().getTime();
         }
         this.world.camera_x = -this.x + 50;
       }
     }, 1000 / 60);
 
     setInterval(() => {
-      if (!this.checkLastMove(5) && !this.isDead() &&!this.isHurt()) {
+      if (!this.checkLastMove(5) && !this.isDead() && !this.isHurt()) {
         this.longIdleAnimation();
       } else {
         if (this.isDead()) {
@@ -178,8 +177,7 @@ class Character extends MovableObject {
           this.playAnimation(this.IMAGES_SWIM);
         } else if (this.world.keyboard.SPACE) {
           this.bubbleShotAnimation();
-        }
-         else {
+        } else {
           this.playAnimation(this.IMAGES_IDLE);
         }
       }
@@ -205,7 +203,7 @@ class Character extends MovableObject {
     } else {
       this.playAnimation(this.IMAGES_LONG_IDLE);
     }
-    if (this.y <250) {
+    if (this.y < 250) {
       this.y += 10;
     }
     this.deadTime++;
@@ -218,7 +216,7 @@ class Character extends MovableObject {
   }
 
   bubbleShotAnimation() {
-      this.playAnimation(this.IMAGES_BUBBLE_SHOT);
+    this.playAnimation(this.IMAGES_BUBBLE_SHOT);
   }
 
   slap() {}
