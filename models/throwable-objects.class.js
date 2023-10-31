@@ -6,8 +6,8 @@ class ThrowableObject extends MovableObject {
     super().loadImage(
       "img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png"
     );
-    this.width = 25;
-    this.height = 25;
+    this.width = 30;
+    this.height = 30;
     this.x = x;
     this.y = y;
     this.bubbling();

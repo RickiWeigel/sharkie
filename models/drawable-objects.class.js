@@ -33,7 +33,8 @@ class DrawableObjects {
     if (
       this instanceof Character ||
       this instanceof Pufferfish ||
-      this instanceof Endboss
+      this instanceof Endboss ||
+      this instanceof ThrowableObject
     ) {
       ctx.beginPath();
       ctx.rect(

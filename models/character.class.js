@@ -95,7 +95,7 @@ class Character extends MovableObject {
   ];
 
   lastMove = 0;
-
+  bubbleShotAnimationTime = false;
   world;
   swim_sound = new Audio("audio/swim.mp3");
   offset = {
@@ -155,6 +155,8 @@ class Character extends MovableObject {
 
         if (this.world.keyboard.SPACE) {
           this.lastMove = new Date().getTime();
+          this.currentImage = 0;
+          this.setBubbleShotAnimationTime(980);
         }
         this.world.camera_x = -this.x + 50;
       }
@@ -175,13 +177,14 @@ class Character extends MovableObject {
           this.world.keyboard.DOWN
         ) {
           this.playAnimation(this.IMAGES_SWIM);
-        } else if (this.world.keyboard.SPACE) {
-          this.bubbleShotAnimation();
+        } else if (this.bubbleShotAnimationTime) {
+          this.playAnimation(this.IMAGES_BUBBLE_SHOT);
         } else {
           this.playAnimation(this.IMAGES_IDLE);
         }
       }
-    }, 1000 / 6);
+      console.log(this.bubbleShotAnimationTime)
+    }, 1000 / 8);
   }
 
   deadAnimation() {
@@ -215,8 +218,11 @@ class Character extends MovableObject {
     return timePassed < timeInSek;
   }
 
-  bubbleShotAnimation() {
-    this.playAnimation(this.IMAGES_BUBBLE_SHOT);
+  setBubbleShotAnimationTime(time) {
+    this.bubbleShotAnimationTime = true;
+    setTimeout(() => {
+      this.bubbleShotAnimationTime = false;
+    }, time);
   }
 
   slap() {}
