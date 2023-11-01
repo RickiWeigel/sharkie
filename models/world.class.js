@@ -23,22 +23,11 @@ class World {
 
   run() {
     setInterval(() => {
-      this.checkBubbleShot();
       this.checkCollisions();
     }, 100);
   }
 
-  checkBubbleShot() {
-    if (this.keyboard.SPACE) {
-      setTimeout(() => {
-        let bubble = new ThrowableObject(
-          this.character.x + 205,
-          this.character.y + 140
-        );
-        this.throwableObject.push(bubble);
-      }, 850);
-    }
-  }
+
 
   checkCollisions() {
     this.level.enemies.forEach((enemy) => {

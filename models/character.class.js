@@ -95,6 +95,7 @@ class Character extends MovableObject {
   ];
 
   lastMove = 0;
+  lastShot = 0;
   bubbleShotAnimationTime = false;
   world;
   swim_sound = new Audio("audio/swim.mp3");
@@ -115,7 +116,15 @@ class Character extends MovableObject {
     this.loadImages(this.IMAGES_HURT);
     this.loadImages(this.IMAGES_BUBBLE_SHOT);
     this.animate();
+    this.run();
     this.lastMove = new Date().getTime();
+    this.lastShot = new Date().getTime();
+  }
+
+  run() {
+    setInterval(() => {
+      this.checkBubbleShot();
+    }, 100);
   }
 
   animate() {
@@ -154,7 +163,6 @@ class Character extends MovableObject {
         }
 
         if (this.world.keyboard.SPACE) {
-          this.lastMove = new Date().getTime();
           this.currentImage = 0;
           this.setBubbleShotAnimationTime(980);
         }
@@ -163,7 +171,7 @@ class Character extends MovableObject {
     }, 1000 / 60);
 
     setInterval(() => {
-      if (!this.checkLastMove(5) && !this.isDead() && !this.isHurt()) {
+      if (!this.checkLastMove(5, this.lastMove) && !this.isDead() && !this.isHurt()) {
         this.longIdleAnimation();
       } else {
         if (this.isDead()) {
@@ -183,7 +191,8 @@ class Character extends MovableObject {
           this.playAnimation(this.IMAGES_IDLE);
         }
       }
-      console.log(this.bubbleShotAnimationTime)
+      // console.log('last Shot:',this.checkLastMove(0.98, this.lastShot));
+      // console.log('shot Anmition Time:',this.bubbleShotAnimationTime);
     }, 1000 / 8);
   }
 
@@ -212,8 +221,8 @@ class Character extends MovableObject {
     this.deadTime++;
   }
 
-  checkLastMove(timeInSek) {
-    let timePassed = new Date().getTime() - this.lastMove; // Rechnet die Differenz der Zeit vom letzten move zur aktuellen Zeit
+  checkLastMove(timeInSek, action) {
+    let timePassed = new Date().getTime() - action; // Rechnet die Differenz der Zeit vom letzten move zur aktuellen Zeit
     timePassed = timePassed / 1000;
     return timePassed < timeInSek;
   }
@@ -223,6 +232,18 @@ class Character extends MovableObject {
     setTimeout(() => {
       this.bubbleShotAnimationTime = false;
     }, time);
+  }
+
+  checkBubbleShot() {
+    if (this.world.keyboard.SPACE) {
+      setTimeout(() => {
+        let bubble = new ThrowableObject(
+          this.x + 205,
+          this.y + 140
+        );
+        this.world.throwableObject.push(bubble);
+      }, 850);
+    }
   }
 
   slap() {}
