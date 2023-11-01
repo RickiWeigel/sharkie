@@ -1,6 +1,6 @@
-class ThrowableObject extends MovableObject {
+class ShotableObject extends MovableObject {
   IMAGES_;
-  speed = 7;
+  speed = 5;
 
   constructor(x, y) {
     super().loadImage(

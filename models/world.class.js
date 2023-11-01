@@ -1,7 +1,7 @@
 class World {
   character = new Character();
   statusBar = new Statusbar();
-  throwableObject = [];
+  shotableObject = [];
   level = level1;
   ctx;
   canvas;
@@ -46,7 +46,7 @@ class World {
     this.addObjectsToMap(this.level.enemies);
     this.addObjectsToMap(this.level.bubbles);
     this.addToMap(this.character);
-    this.addObjectsToMap(this.throwableObject);
+    this.addObjectsToMap(this.shotableObject);
 
     this.ctx.translate(-this.camera_x, 0);
 
