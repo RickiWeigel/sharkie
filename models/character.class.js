@@ -166,7 +166,7 @@ class Character extends MovableObject {
 
     setInterval(() => {
       if (
-        !this.checkLastMove(5, this.lastMove) &&
+        !this.checkLastMove(8, this.lastMove) &&
         !this.isDead() &&
         !this.isHurt()
       ) {
