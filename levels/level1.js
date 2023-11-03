@@ -29,6 +29,7 @@ const level1 = new Level(
     new Pufferfish(),
     new Pufferfish(),
     new Pufferfish(),
+    new Jellyfish(450, 350),
     // new Pufferfish(),
     // new Pufferfish(),
     // new Pufferfish(),

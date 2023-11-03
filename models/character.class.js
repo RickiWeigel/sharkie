@@ -92,6 +92,7 @@ class Character extends MovableObject {
     "img/1.Sharkie/4.Attack/Bubble trap/For Whale/6.png",
     "img/1.Sharkie/4.Attack/Bubble trap/For Whale/7.png",
     "img/1.Sharkie/4.Attack/Bubble trap/For Whale/8.png",
+    "img/1.Sharkie/4.Attack/Bubble trap/For Whale/8.png",
   ];
 
   lastMove = 0;
@@ -158,7 +159,7 @@ class Character extends MovableObject {
         if (this.world.keyboard.SPACE) {
           this.lastMove = new Date().getTime();
           this.currentImage = 0;
-          this.setBubbleShotAnimationTime(1090);
+          this.setBubbleShotAnimationTime(1000);
         }
         this.world.camera_x = -this.x + 50;
       }
@@ -191,7 +192,7 @@ class Character extends MovableObject {
           this.playAnimation(this.IMAGES_IDLE);
         }
       }
-    }, 1000 / 10);
+    }, 1000 / 8);
   }
 
   deadAnimation() {
@@ -234,6 +235,7 @@ class Character extends MovableObject {
 
   checkBubbleShot() {
     if (this.currentImage == 6) {  
+      this.currentImage == 0;
         let bubble = new ShotableObject(this.x + 200, this.y + 140);
         this.world.shotableObject.push(bubble);
     }
