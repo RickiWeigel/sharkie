@@ -101,10 +101,10 @@ class Character extends MovableObject {
   world;
   swim_sound = new Audio("audio/swim.mp3");
   offset = {
-    top: 115,
+    top: 125,
     left: 50,
-    right: 100,
-    bottom: 168,
+    right: 105,
+    bottom: 185,
   };
 
   constructor() {

@@ -9,9 +9,9 @@ class Jellyfish extends MovableObject {
   ];
   offset = {
     top: 10,
-    left: 10,
-    right: 10,
-    bottom: 10,
+    left: 8,
+    right: 15,
+    bottom: 20,
   };
 
   constructor(x) {
