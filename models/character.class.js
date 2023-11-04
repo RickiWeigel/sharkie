@@ -128,14 +128,14 @@ class Character extends MovableObject {
       if (!this.isDead()) {
         if (this.world.keyboard.RIGHT && this.x < level1.level_end_x) {
           this.swim_sound.play();
-          this.moveRight();
+          this.moveRight(5);
           this.otherDirection = false;
           this.lastMove = new Date().getTime();
         }
 
         if (this.world.keyboard.LEFT && this.x > 0) {
           this.swim_sound.play();
-          this.moveLeft();
+          this.moveLeft(5);
           this.otherDirection = true;
           this.lastMove = new Date().getTime();
         }
@@ -143,7 +143,7 @@ class Character extends MovableObject {
         if (this.world.keyboard.UP) {
           this.swim_sound.play();
           if (this.y > -80) {
-            this.moveUp();
+            this.moveUp(5);
             this.lastMove = new Date().getTime();
           }
         }
@@ -151,7 +151,7 @@ class Character extends MovableObject {
         if (this.world.keyboard.DOWN) {
           this.swim_sound.play();
           if (this.y < 280) {
-            this.moveDown();
+            this.moveDown(5);
             this.lastMove = new Date().getTime();
           }
         }

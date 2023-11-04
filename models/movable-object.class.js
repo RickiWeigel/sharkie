@@ -11,6 +11,8 @@ class MovableObject extends DrawableObjects {
   lastHit = 0;
   height;
   width;
+  up = false;
+  down = false;
 
   isColliding(mo) {
     return (
@@ -51,19 +53,28 @@ class MovableObject extends DrawableObjects {
     this.currentImage++;
   }
 
-  moveRight() {
-    this.x += this.speed;
+  moveRight(speed) {
+    this.x += speed;
   }
 
-  moveLeft() {
-    this.x -= this.speed;
+  moveLeft(speed) {
+    this.x -= speed;
   }
 
-  moveUp() {
-    this.y -= this.speed;
+  moveUp(speed) {
+    this.y -= speed;
   }
 
-  moveDown() {
-    this.y += this.speed;
+  moveDown(speed) {
+    this.y += speed;
   }
+
+  moveUpAndDown(speed) {
+    if (this.up) {
+        this.moveUp(speed);
+    }
+    if (this.down) {
+        this.moveDown(speed);
+    }
+}
 }
