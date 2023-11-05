@@ -1,7 +1,6 @@
 class World {
   character = new Character();
   statusBar = new Statusbar();
-  
   shotableObject = [];
   level = level1;
   ctx;

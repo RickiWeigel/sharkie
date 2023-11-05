@@ -159,7 +159,7 @@ class Character extends MovableObject {
         if (this.world.keyboard.SPACE) {
           this.lastMove = new Date().getTime();
           this.currentImage = 0;
-          this.setBubbleShotAnimationTime(1000);
+          this.setBubbleShotAnimationTime(1050);
         }
         this.world.camera_x = -this.x + 50;
       }
@@ -192,7 +192,7 @@ class Character extends MovableObject {
           this.playAnimation(this.IMAGES_IDLE);
         }
       }
-    }, 1000 / 8);
+    }, 1000 / 9);
   }
 
   deadAnimation() {
