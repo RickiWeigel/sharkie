@@ -1,6 +1,7 @@
 class World {
   character = new Character();
   statusBar = new Statusbar();
+  
   shotableObject = [];
   level = level1;
   ctx;
@@ -24,10 +25,9 @@ class World {
   run() {
     setInterval(() => {
       this.checkCollisions();
+      this.checkCollisionBubbleWithJellyfish();
     }, 100);
   }
-
-
 
   checkCollisions() {
     this.level.enemies.forEach((enemy) => {
@@ -35,6 +35,30 @@ class World {
         this.character.hit();
         this.statusBar.setPercentage(this.character.healthPoints);
       }
+    });
+  }
+
+  /**
+   * Überprüft, ob Blasen mit Quallen kollidieren und aktualisiert den Spielzustand entsprechend.
+   */
+  checkCollisionBubbleWithJellyfish() {
+    // Array mit allen Quallen im aktuellen Level
+    const jellyfishArray = level1.enemies.filter(
+      (enemy) => enemy instanceof Jellyfish
+    );
+
+    // Iteriere über alle aktiven Blasen
+    this.shotableObject.forEach((shot, shotIndex) => {
+      // Iteriere über alle Quallen im Level
+      jellyfishArray.forEach((jelly, index) => {
+        // Überprüfe, ob eine Blase mit einer Qualle kollidiert
+        if (shot.isColliding(jelly)) {
+          // Entferne die Blase aus dem Array der aktiven Blasen
+          this.shotableObject.splice(shotIndex, 1);
+          // Markiere die Qualle als getroffen
+          this.level.enemies[index].isShot = true;
+        }
+      });
     });
   }
 

@@ -1,6 +1,12 @@
 class ShotableObject extends MovableObject {
   IMAGES_;
   speed = 5;
+  offset = {
+    top: 5,
+    left: 5,
+    right: 10,
+    bottom: 10,
+  };
 
   constructor(x, y) {
     super().loadImage(

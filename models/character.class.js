@@ -235,10 +235,10 @@ class Character extends MovableObject {
 
   checkBubbleShot() {
     if (this.currentImage == 6) {  
-      this.currentImage == 0;
         let bubble = new ShotableObject(this.x + 200, this.y + 140);
         this.world.shotableObject.push(bubble);
     }
+    this.currentImage == 0;
   }
 
   slap() {}
