@@ -95,9 +95,19 @@ class Character extends MovableObject {
     "img/1.Sharkie/4.Attack/Bubble trap/For Whale/8.png",
   ];
 
+  IMAGES_SLAP = [
+    'img/1.Sharkie/4.Attack/Fin slap/1.png',
+    'img/1.Sharkie/4.Attack/Fin slap/4.png',
+    'img/1.Sharkie/4.Attack/Fin slap/5.png',
+    'img/1.Sharkie/4.Attack/Fin slap/6.png',
+    'img/1.Sharkie/4.Attack/Fin slap/7.png',
+    'img/1.Sharkie/4.Attack/Fin slap/8.png',
+  ]
+
   lastMove = 0;
   lastShot = 0;
   bubbleShotAnimationTime = false;
+  slapAnimationTime = false;
   world;
   swim_sound = new Audio("audio/swim.mp3");
   offset = {
@@ -116,6 +126,7 @@ class Character extends MovableObject {
     this.loadImages(this.IMAGES_DEAD);
     this.loadImages(this.IMAGES_HURT);
     this.loadImages(this.IMAGES_BUBBLE_SHOT);
+    this.loadImages(this.IMAGES_SLAP);
     this.animate();
     this.lastMove = new Date().getTime();
     this.lastShot = new Date().getTime();
@@ -161,9 +172,14 @@ class Character extends MovableObject {
           this.currentImage = 0;
           this.setBubbleShotAnimationTime(1050);
         }
+        if (this.world.keyboard.D) {
+          this.lastMove = new Date().getTime();
+          this.currentImage = 0;
+          this.setSlapAnimationTime(480);
+        }
         this.world.camera_x = -this.x + 50;
       }
-    }, 1000 / 60);
+    }, 1000 / 70);
 
     setInterval(() => {
       if (
@@ -186,8 +202,9 @@ class Character extends MovableObject {
           this.playAnimation(this.IMAGES_SWIM);
         } else if (this.bubbleShotAnimationTime) {
           this.checkBubbleShot();
-          console.log(this.currentImage);
           this.playAnimation(this.IMAGES_BUBBLE_SHOT);
+        } else if (this.slapAnimationTime) {
+          this.playAnimation(this.IMAGES_SLAP);
         } else {
           this.playAnimation(this.IMAGES_IDLE);
         }
@@ -230,6 +247,13 @@ class Character extends MovableObject {
     this.bubbleShotAnimationTime = true;
     setTimeout(() => {
       this.bubbleShotAnimationTime = false;
+    }, time);
+  }
+
+  setSlapAnimationTime(time) {
+    this.slapAnimationTime = true;
+    setTimeout(() => {
+      this.slapAnimationTime = false;
     }, time);
   }
 

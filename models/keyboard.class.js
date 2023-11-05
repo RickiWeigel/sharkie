@@ -5,4 +5,5 @@ SPACE = false;
 UP = false;
 DOWN = false;
 E = false;
+D = false;
 }
