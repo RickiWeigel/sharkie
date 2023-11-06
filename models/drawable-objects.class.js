@@ -35,7 +35,8 @@ class DrawableObjects {
       this instanceof Pufferfish ||
       this instanceof Endboss ||
       this instanceof Jellyfish ||
-      this instanceof ShotableObject
+      this instanceof ShotableObject ||
+      this instanceof Poison
     ) {
       ctx.beginPath();
       ctx.rect(

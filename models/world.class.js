@@ -70,6 +70,7 @@ class World {
     this.addObjectsToMap(this.level.bubbles);
     this.addToMap(this.character);
     this.addObjectsToMap(this.shotableObject);
+    this.addObjectsToMap(this.level.poison);
 
     this.ctx.translate(-this.camera_x, 0);
 
@@ -106,6 +107,7 @@ class World {
     this.ctx.scale(-1, 1);
     mo.x = mo.x * -1;
   }
+
 
   flipImageBack(mo) {
     mo.x = mo.x * -1;
