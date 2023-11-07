@@ -1,4 +1,4 @@
-class Statusbar extends DrawableObjects {
+class StatusbarLife extends DrawableObjects {
   IMAGES_STATUSBAR = [
     "img/4.Marcadores/Purple/lifeStatus0.png",
     "img/4.Marcadores/Purple/lifeStatus20.png",

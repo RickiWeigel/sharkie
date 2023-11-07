@@ -1,6 +1,7 @@
 class World {
   character = new Character();
-  statusBar = new Statusbar();
+  statusBarLife = new StatusbarLife();
+  statusBarPoison = new StatusbarPoison();
   shotableObject = [];
   level = level1;
   ctx;
@@ -74,7 +75,9 @@ class World {
 
     this.ctx.translate(-this.camera_x, 0);
 
-    this.addToMap(this.statusBar);
+    this.addToMap(this.statusBarLife);
+    this.addToMap(this.statusBarPoison);
+
     //draw wird immer wieder aufgerufen.
     let self = this;
     requestAnimationFrame(function () {
