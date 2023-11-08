@@ -167,7 +167,7 @@ class Character extends MovableObject {
           }
         }
 
-        if (this.world.keyboard.SPACE) {
+        if (this.world.keyboard.SPACE && this.world.collectedPoison.length > 0) {
           this.lastMove = new Date().getTime();
           this.currentImage = 0;
           this.setBubbleShotAnimationTime(1050);
@@ -200,7 +200,7 @@ class Character extends MovableObject {
           this.world.keyboard.DOWN
         ) {
           this.playAnimation(this.IMAGES_SWIM);
-        } else if (this.bubbleShotAnimationTime) {
+        } else if (this.bubbleShotAnimationTime && this.world.collectedPoison.length > 0) {
           this.checkBubbleShot();
           this.playAnimation(this.IMAGES_BUBBLE_SHOT);
         } else if (this.slapAnimationTime) {
@@ -261,6 +261,7 @@ class Character extends MovableObject {
     if (this.currentImage == 6) {  
         let bubble = new ShotableObject(this.x + 200, this.y + 140);
         this.world.shotableObject.push(bubble);
+        this.world.collectedPoison.splice(0,1);
     }
     this.currentImage == 0;
   }

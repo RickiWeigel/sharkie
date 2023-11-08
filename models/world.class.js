@@ -3,6 +3,7 @@ class World {
   statusBarLife = new StatusbarLife();
   statusBarPoison = new StatusbarPoison();
   shotableObject = [];
+  collectedPoison = [];
   level = level1;
   ctx;
   canvas;
@@ -26,6 +27,7 @@ class World {
     setInterval(() => {
       this.checkCollisions();
       this.checkCollisionBubbleWithJellyfish();
+      this.checkCollisionsWithBottle();
     }, 100);
   }
 
@@ -33,9 +35,19 @@ class World {
     this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy)) {
         this.character.hit();
-        this.statusBar.setPercentage(this.character.healthPoints);
+        this.statusBarLife.setPercentage(this.character.healthPoints);
       }
     });
+  }
+
+  checkCollisionsWithBottle() {
+    this.level.poison.forEach((p, bubbleIndex) => {
+      if (this.character.isColliding(p)) {
+        this.collectedPoison.push(level1.poison[bubbleIndex]);
+        level1.poison.splice(bubbleIndex, 1);
+      }
+    });
+    this.statusBarPoison.setAvailablePoison(this.collectedPoison.length);
   }
 
   /**
@@ -110,7 +122,6 @@ class World {
     this.ctx.scale(-1, 1);
     mo.x = mo.x * -1;
   }
-
 
   flipImageBack(mo) {
     mo.x = mo.x * -1;
