@@ -97,6 +97,8 @@ class Character extends MovableObject {
 
   IMAGES_SLAP = [
     'img/1.Sharkie/4.Attack/Fin slap/1.png',
+    'img/1.Sharkie/4.Attack/Fin slap/2.png',
+    'img/1.Sharkie/4.Attack/Fin slap/3.png',
     'img/1.Sharkie/4.Attack/Fin slap/4.png',
     'img/1.Sharkie/4.Attack/Fin slap/5.png',
     'img/1.Sharkie/4.Attack/Fin slap/6.png',
@@ -161,7 +163,7 @@ class Character extends MovableObject {
 
         if (this.world.keyboard.DOWN) {
           this.swim_sound.play();
-          if (this.y < 280) {
+          if (this.y < 250) {
             this.moveDown(5);
             this.lastMove = new Date().getTime();
           }
@@ -175,7 +177,7 @@ class Character extends MovableObject {
         if (this.world.keyboard.D) {
           this.lastMove = new Date().getTime();
           this.currentImage = 0;
-          this.setSlapAnimationTime(480);
+          this.setSlapAnimationTime(800);
         }
         this.world.camera_x = -this.x + 50;
       }
@@ -232,7 +234,7 @@ class Character extends MovableObject {
       this.playAnimation(this.IMAGES_LONG_IDLE);
     }
     if (this.y < 250) {
-      this.y += 10;
+      this.y += 8;
     }
     this.deadTime++;
   }

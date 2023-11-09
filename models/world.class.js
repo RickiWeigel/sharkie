@@ -28,6 +28,7 @@ class World {
       this.checkCollisions();
       this.checkCollisionBubbleWithJellyfish();
       this.checkCollisionsWithBottle();
+      this.isCharacterCloseTo();
     }, 100);
   }
 
@@ -36,6 +37,18 @@ class World {
       if (this.character.isColliding(enemy)) {
         this.character.hit();
         this.statusBarLife.setPercentage(this.character.healthPoints);
+      }
+    });
+  }
+
+  isCharacterCloseTo() {
+    this.level.enemies.forEach((enemy, indexEnemy) => {
+      if (this.character.isNearToSharkie(enemy) && this.character.slapAnimationTime) {
+        console.log("Enemie kill", indexEnemy);
+        enemy.isDead = true;
+        console.log(enemy.isDead);
+      } else {
+
       }
     });
   }
@@ -55,9 +68,7 @@ class World {
    */
   checkCollisionBubbleWithJellyfish() {
     // Array mit allen Quallen im aktuellen Level
-    const jellyfishArray = level1.enemies.filter(
-      (enemy) => enemy instanceof Jellyfish
-    );
+    const jellyfishArray = level1.enemies.filter((enemy) => enemy instanceof Jellyfish);
 
     // Iteriere über alle aktiven Blasen
     this.shotableObject.forEach((shot, shotIndex) => {

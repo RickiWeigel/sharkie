@@ -16,14 +16,20 @@ class MovableObject extends DrawableObjects {
 
   isColliding(mo) {
     return (
-      this.x + this.offset.left + this.width - this.offset.right >=
-        mo.x + mo.offset.left &&
-      this.y + this.offset.top + this.height - this.offset.bottom >=
-        mo.y + mo.offset.top &&
-      this.x + this.offset.left <=
-        mo.x + mo.offset.left + mo.width - mo.offset.right &&
-      this.y + this.offset.top <=
-        mo.y + mo.offset.top + mo.height - mo.offset.bottom
+      this.x + this.offset.left + this.width - this.offset.right >= mo.x + mo.offset.left &&
+      this.y + this.offset.top + this.height - this.offset.bottom >= mo.y + mo.offset.top &&
+      this.x + this.offset.left <= mo.x + mo.offset.left + mo.width - mo.offset.right &&
+      this.y + this.offset.top <= mo.y + mo.offset.top + mo.height - mo.offset.bottom
+    );
+  }
+
+  isNearToSharkie(mo) {
+    let spaceX = 50;
+    return (
+      this.x + this.offset.left + this.width - this.offset.right + spaceX >= mo.x + mo.offset.left - spaceX&&
+      this.y + this.offset.top + this.height - this.offset.bottom >= mo.y + mo.offset.top + spaceX&&
+      this.x + this.offset.left - spaceX <= mo.x + mo.offset.left + mo.width - mo.offset.right &&
+      this.y + this.offset.top <= mo.y + mo.offset.top + mo.height - mo.offset.bottom
     );
   }
 
@@ -71,10 +77,10 @@ class MovableObject extends DrawableObjects {
 
   moveUpAndDown(speed) {
     if (this.up) {
-        this.moveUp(speed);
+      this.moveUp(speed);
     }
     if (this.down) {
-        this.moveDown(speed);
+      this.moveDown(speed);
     }
-}
+  }
 }
