@@ -37,7 +37,7 @@ constructor() {
 animate(){
     setInterval(() => {
         this.playAnimation(this.IMAGES_FLOATING);
-    }, 200);
+    }, 120);
 }
 }
 
