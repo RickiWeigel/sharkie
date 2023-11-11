@@ -17,7 +17,6 @@ class Pufferfish extends MovableObject {
     right: 0,
     bottom: 23,
   };
-  isDead = false;
 
   constructor() {
     super().loadImage("img/2.Enemy/pufferfish/1.Swim/1.swim1.png");
@@ -30,15 +29,15 @@ class Pufferfish extends MovableObject {
   }
 
   animate() {
-    this.move(this.speed);
-    setInterval(() => {
-      if (this.isDead) {
-        this.playAnimation(this.IMAGES_DEAD);
-      } else {
-        this.playAnimation(this.IMAGES_IDLE);
-      }
-    }, 150);
+    this.moveAnimation();
+    this.swimAnimation();
   }
+
+  swimAnimation() {
+    setInterval(() => {
+        this.playAnimation(this.IMAGES_IDLE);
+    }, 1000 / 10);
+}
 
   rondomPositionY() {
     return 30 + Math.floor(Math.random() * 380);
@@ -52,17 +51,28 @@ class Pufferfish extends MovableObject {
     return 0.3 + Math.random() * 1.0;
   }
 
-  move(speed) {
-    const interval = setInterval(() => {
-      if (this.isDead) {
-        this.width = 55;
-        this.height = 55;
-      } else {
-        this.moveLeft(speed);
-        if (this.x <= -800) {
-          clearInterval(interval); // Das Intervall stoppen
-        }
-      }
+  moveAnimation() {
+    setInterval(() => {
+        this.moveLeft(this.speed);
     }, 1000 / 60);
+  }
+
+  deadAnimation(otherDirection) {
+    this.width = 55;
+    this.height = 55;
+    setInterval(() => {
+        this.img.src = this.IMAGES_DEAD[0];
+        this.speed = 0;
+        this.moveDeadFish(otherDirection);
+    }, 1);
+}
+
+  moveDeadFish(otherDirection) {
+    if (!otherDirection) {
+      this.moveRight(1);
+    } else {
+      this.moveLeft(1);
+    }
+    this.y -= 1;
   }
 }

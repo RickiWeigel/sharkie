@@ -24,8 +24,8 @@ class MovableObject extends DrawableObjects {
   }
 
   isNearToSharkie(mo) {
-    let spaceX = 50;
-    let spaceY = 10;
+    let spaceX = 38;
+    let spaceY = 5;
     return (
       this.x + this.offset.left + this.width - this.offset.right + spaceX >= mo.x + mo.offset.left&&
       this.y + this.offset.top + this.height - this.offset.bottom + spaceY >= mo.y + mo.offset.top&&

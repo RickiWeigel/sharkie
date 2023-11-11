@@ -42,13 +42,11 @@ class World {
   }
 
   isCharacterCloseTo() {
-    this.level.enemies.forEach((enemy, indexEnemy) => {
+    this.level.enemies.forEach((enemy) => {
       if (this.character.isNearToSharkie(enemy) && this.character.slapAnimationTime) {
-        console.log("Enemie kill", indexEnemy);
-        enemy.isDead = true;
-        console.log(enemy.isDead);
-      } else {
-
+        setTimeout(() => {
+            enemy.deadAnimation(this.character.otherDirection);
+        }, 200);
       }
     });
   }

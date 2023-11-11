@@ -174,7 +174,7 @@ class Character extends MovableObject {
           this.currentImage = 0;
           this.setBubbleShotAnimationTime(1050);
         }
-        if (this.world.keyboard.D) {
+        if (this.world.keyboard.D && !this.isHurt()) {
           this.lastMove = new Date().getTime();
           this.currentImage = 0;
           this.setSlapAnimationTime(800);
@@ -211,7 +211,7 @@ class Character extends MovableObject {
           this.playAnimation(this.IMAGES_IDLE);
         }
       }
-    }, 1000 / 9);
+    }, 1000 / 12);
   }
 
   deadAnimation() {
