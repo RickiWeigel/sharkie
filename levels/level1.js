@@ -52,9 +52,22 @@ const level1 = new Level(
     new Bubble(),
     new Bubble(),
     new Bubble(),
+    new Bubble(),
+    new Bubble(),
+    new Bubble(),
+    new Bubble(),
+    new Bubble(),
+    new Bubble(),
+    new Bubble(),
+    new Bubble(),
+    new Bubble(),
   ],
   [
     new Poison(150, 150),
     new Poison(280,350),
+  ],
+  [
+    new Coin(250, 150),
+    new Coin(380,350),
   ],
 );

@@ -2,6 +2,7 @@ class World {
   character = new Character();
   statusBarLife = new StatusbarLife();
   statusBarPoison = new StatusbarPoison();
+  statusBarCoin = new StatusbarCoin();
   shotableObject = [];
   collectedPoison = [];
   level = level1;
@@ -45,7 +46,7 @@ class World {
     this.level.enemies.forEach((enemy) => {
       if (this.character.isNearToSharkie(enemy) && this.character.slapAnimationTime) {
         setTimeout(() => {
-            enemy.deadAnimation(this.character.otherDirection);
+          enemy.deadAnimation(this.character.otherDirection);
         }, 200);
       }
     });
@@ -89,15 +90,17 @@ class World {
     this.ctx.translate(this.camera_x, 0);
     this.addObjectsToMap(this.level.backgroundObjects);
     this.addObjectsToMap(this.level.enemies);
-    this.addObjectsToMap(this.level.bubbles);
+
     this.addToMap(this.character);
     this.addObjectsToMap(this.shotableObject);
     this.addObjectsToMap(this.level.poison);
-
+    this.addObjectsToMap(this.level.coin);
+    this.addObjectsToMap(this.level.bubbles);
     this.ctx.translate(-this.camera_x, 0);
 
     this.addToMap(this.statusBarLife);
     this.addToMap(this.statusBarPoison);
+    this.addToMap(this.statusBarCoin);
 
     //draw wird immer wieder aufgerufen.
     let self = this;
