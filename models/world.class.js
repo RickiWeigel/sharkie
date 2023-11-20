@@ -5,6 +5,7 @@ class World {
   statusBarCoin = new StatusbarCoin();
   shotableObject = [];
   collectedPoison = [];
+  collectedCoin = [];
   level = level1;
   ctx;
   canvas;
@@ -29,6 +30,7 @@ class World {
       this.checkCollisions();
       this.checkCollisionBubbleWithJellyfish();
       this.checkCollisionsWithBottle();
+      this.checkCollisionsWithCoin();
       this.isCharacterCloseTo();
     }, 100);
   }
@@ -61,6 +63,20 @@ class World {
     });
     this.statusBarPoison.setAvailablePoison(this.collectedPoison.length);
   }
+
+  checkCollisionsWithCoin() {
+    this.level.coin.forEach((p, bubbleIndex) => {
+      if (this.character.isColliding(p)) {
+        this.collectedCoin.push(level1.coin[bubbleIndex]);
+        level1.coin.splice(bubbleIndex, 1);
+      }
+    });
+    this.statusBarCoin.setCollectedCoins(this.collectedCoin.length);
+  }
+
+
+
+
 
   /**
    * Überprüft, ob Blasen mit Quallen kollidieren und aktualisiert den Spielzustand entsprechend.

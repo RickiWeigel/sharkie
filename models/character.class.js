@@ -115,7 +115,7 @@ class Character extends MovableObject {
   offset = {
     top: 125,
     left: 50,
-    right: 105,
+    right: 115,
     bottom: 185,
   };
 
@@ -163,7 +163,7 @@ class Character extends MovableObject {
 
         if (this.world.keyboard.DOWN) {
           this.swim_sound.play();
-          if (this.y < 250) {
+          if (this.y < 280) {
             this.moveDown(5);
             this.lastMove = new Date().getTime();
           }
