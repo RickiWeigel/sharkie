@@ -12,6 +12,7 @@ class World {
   canvas;
   keyboard;
   camera_x = 0;
+  endbossSpawning = false;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -76,16 +77,16 @@ class World {
     this.statusBarCoin.setCollectedCoins(this.collectedCoin.length);
   }
 
-  checkSharkiePosition(){
-    if (this.character.x > 2080) {
-      console.log(this.character.x)
+  checkSharkiePosition() {
+    if (this.character.x > 250) {
+      this.endbossSpawning = true;
+      this.endboss.endbossIntro = true;
+
+      console.log(this.endbossSpawning);
     } else {
-      console.log(this.character.x)
+      console.log(this.character.x);
     }
   }
-
-
-
 
   /**
    * Überprüft, ob Blasen mit Quallen kollidieren und aktualisiert den Spielzustand entsprechend.
@@ -117,6 +118,8 @@ class World {
     this.addObjectsToMap(this.level.enemies);
 
     this.addToMap(this.character);
+    this.addToMap(this.endboss);
+
     this.addObjectsToMap(this.shotableObject);
     this.addObjectsToMap(this.level.poison);
     this.addObjectsToMap(this.level.coin);
