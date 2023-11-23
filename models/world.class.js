@@ -86,13 +86,9 @@ class World {
   }
 
   checkSharkieInBossArea() {
-    if (this.character.x > 250) {
+    if (this.character.x > 2050) {
       this.endbossSpawning = true;
       this.endboss.endbossIntro = true;
-
-      console.log(this.endbossSpawning);
-    } else {
-      console.log(this.character.x);
     }
   }
 
