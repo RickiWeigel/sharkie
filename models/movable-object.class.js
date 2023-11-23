@@ -60,6 +60,12 @@ class MovableObject extends DrawableObjects {
     this.currentImage++;
   }
 
+  checkLastMove(timeInSek, action) {
+    let timePassed = new Date().getTime() - action; // Rechnet die Differenz der Zeit vom letzten move zur aktuellen Zeit
+    timePassed = timePassed / 1000;
+    return timePassed < timeInSek;
+  }
+
   moveRight(speed) {
     this.x += speed;
   }

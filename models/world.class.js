@@ -1,5 +1,6 @@
 class World {
   character = new Character();
+  endboss = new Endboss();
   statusBarLife = new StatusbarLife();
   statusBarPoison = new StatusbarPoison();
   statusBarCoin = new StatusbarCoin();
@@ -32,6 +33,7 @@ class World {
       this.checkCollisionsWithBottle();
       this.checkCollisionsWithCoin();
       this.isCharacterCloseTo();
+      this.checkSharkiePosition();
     }, 100);
   }
 
@@ -74,6 +76,13 @@ class World {
     this.statusBarCoin.setCollectedCoins(this.collectedCoin.length);
   }
 
+  checkSharkiePosition(){
+    if (this.character.x > 2080) {
+      console.log(this.character.x)
+    } else {
+      console.log(this.character.x)
+    }
+  }
 
 
 

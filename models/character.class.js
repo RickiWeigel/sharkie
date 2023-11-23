@@ -239,11 +239,11 @@ class Character extends MovableObject {
     this.deadTime++;
   }
 
-  checkLastMove(timeInSek, action) {
-    let timePassed = new Date().getTime() - action; // Rechnet die Differenz der Zeit vom letzten move zur aktuellen Zeit
-    timePassed = timePassed / 1000;
-    return timePassed < timeInSek;
-  }
+  // checkLastMove(timeInSek, action) {
+  //   let timePassed = new Date().getTime() - action; // Rechnet die Differenz der Zeit vom letzten move zur aktuellen Zeit
+  //   timePassed = timePassed / 1000;
+  //   return timePassed < timeInSek;
+  // }
 
   setBubbleShotAnimationTime(time) {
     this.bubbleShotAnimationTime = true;
