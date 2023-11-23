@@ -39,10 +39,10 @@ class Endboss extends MovableObject {
   ];
 
   offset = {
-    top: 120,
-    left: 10,
-    right: 30,
-    bottom: 170,
+    top: 170,
+    left: 15,
+    right: 40,
+    bottom: 230,
   };
 
 constructor() {

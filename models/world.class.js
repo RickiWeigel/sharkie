@@ -34,7 +34,8 @@ class World {
       this.checkCollisionsWithBottle();
       this.checkCollisionsWithCoin();
       this.isCharacterCloseTo();
-      this.checkSharkiePosition();
+      this.checkSharkieInBossArea();
+      this.checkCollisionsEnboss();
     }, 100);
   }
 
@@ -45,6 +46,13 @@ class World {
         this.statusBarLife.setPercentage(this.character.healthPoints);
       }
     });
+  }
+
+  checkCollisionsEnboss() {
+      if (this.character.isColliding(this.endboss)) {
+        this.character.hit();
+        this.statusBarLife.setPercentage(this.character.healthPoints);
+      }
   }
 
   isCharacterCloseTo() {
@@ -77,7 +85,7 @@ class World {
     this.statusBarCoin.setCollectedCoins(this.collectedCoin.length);
   }
 
-  checkSharkiePosition() {
+  checkSharkieInBossArea() {
     if (this.character.x > 250) {
       this.endbossSpawning = true;
       this.endboss.endbossIntro = true;
