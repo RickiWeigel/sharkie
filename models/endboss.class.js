@@ -118,7 +118,7 @@ class Endboss extends MovableObject {
   isAttacking() {
     let timePassed = new Date().getTime() - this.lastAttack;
     timePassed = timePassed / 1000;
-    return timePassed < 2;
+    return timePassed < 1.5;
   }
 
   setAttackTime() {
