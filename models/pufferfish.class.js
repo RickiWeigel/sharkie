@@ -44,11 +44,11 @@ class Pufferfish extends MovableObject {
   }
 
   rondomPositionX() {
-    return 720 + Math.floor(Math.random() * 2880);
+    return 820 + Math.floor(Math.random() * 2880);
   }
 
   rondomSpeed() {
-    return 0.3 + Math.random() * 1.0;
+    return 0.3 + Math.random() * 0.9;
   }
 
   moveAnimation() {

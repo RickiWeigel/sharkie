@@ -8,6 +8,7 @@ class Endboss extends MovableObject {
   endbossIntro;
   attackTime;
   lastAttack;
+  healthPoints = 15;
   firstContact = false;
 
   IMAGES_FLOATING = [
@@ -49,10 +50,10 @@ class Endboss extends MovableObject {
   ];
 
   offset = {
-    top: 170,
+    top: 140,
     left: 15,
     right: 40,
-    bottom: 230,
+    bottom: 200,
   };
 
   constructor() {
@@ -72,7 +73,7 @@ class Endboss extends MovableObject {
         this.introAnimation();
       } else if (this.isAttacking()) {
         this.attackAnimation();
-        this.moveLeft(this.speed + 20);
+        this.moveLeft(this.speed + 15);
       } else {
         this.playAnimation(this.IMAGES_FLOATING);
       }
@@ -98,12 +99,12 @@ class Endboss extends MovableObject {
       if (this.y + this.height == 550) {
         this.up = true;
         this.down = false;
-      } else if (this.y <= -40) {
+      } else if (this.y <= -80) {
         this.up = false;
         this.down = true;
       }
       this.moveUpAndDown(this.speed);
-      this.moveLeft(0.3);
+      this.moveLeft(0.2);
     }, 1000 / 60);
   }
 

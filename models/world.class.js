@@ -4,6 +4,7 @@ class World {
   statusBarLife = new StatusbarLife();
   statusBarPoison = new StatusbarPoison();
   statusBarCoin = new StatusbarCoin();
+  statusBarEndboss = new StatusbarEnbossLife();
   shotableObject = [];
   collectedPoison = [];
   collectedCoin = [];
@@ -35,7 +36,8 @@ class World {
       this.checkCollisionsWithCoin();
       this.isCharacterCloseTo();
       this.checkSharkieInBossArea();
-      this.checkCollisionsEnboss();
+      this.checkCharacterCollisionsEnboss();
+      this.checkCollisionBubbleWithEndboss()
     }, 100);
   }
 
@@ -48,7 +50,7 @@ class World {
     });
   }
 
-  checkCollisionsEnboss() {
+  checkCharacterCollisionsEnboss() {
       if (this.character.isColliding(this.endboss)) {
         this.character.hit();
         this.statusBarLife.setPercentage(this.character.healthPoints);
@@ -114,6 +116,22 @@ class World {
     });
   }
 
+  checkCollisionBubbleWithEndboss(){
+    this.shotableObject.forEach((shot, shotIndex) => {
+      // Iteriere über alle Quallen im Level
+      
+        // Überprüfe, ob eine Blase mit einer Qualle kollidiert
+        if (shot.isColliding(this.endboss)) {
+          // Entferne die Blase aus dem Array der aktiven Blasen
+          this.shotableObject.splice(shotIndex, 1);
+          this.endboss.hit();
+          console.log('healtPoints', this.endboss.healthPoints)
+        }
+    });
+  }
+
+
+
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // altes canvas wird gecleart
 
@@ -133,6 +151,7 @@ class World {
     this.addToMap(this.statusBarLife);
     this.addToMap(this.statusBarPoison);
     this.addToMap(this.statusBarCoin);
+    this.addToMap(this.statusBarEndboss);
 
     //draw wird immer wieder aufgerufen.
     let self = this;

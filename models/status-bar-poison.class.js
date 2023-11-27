@@ -13,7 +13,7 @@ class StatusbarPoison extends DrawableObjects {
     super();
     this.loadImage("img/4.Marcadores/Purple/poisonStatus0.png");
     this.loadImages(this.IMAGES_STATUSBAR_POISON);
-    this.x = 205;
+    this.x = 265;
     this.y = 0;
     this.width = 180;
     this.height = 50;

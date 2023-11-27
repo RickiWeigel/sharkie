@@ -113,10 +113,10 @@ class Character extends MovableObject {
   world;
   swim_sound = new Audio("audio/swim.mp3");
   offset = {
-    top: 125,
-    left: 50,
+    top: 130,
+    left: 60,
     right: 115,
-    bottom: 185,
+    bottom: 190,
   };
 
   constructor() {
@@ -239,12 +239,6 @@ class Character extends MovableObject {
     this.deadTime++;
   }
 
-  // checkLastMove(timeInSek, action) {
-  //   let timePassed = new Date().getTime() - action; // Rechnet die Differenz der Zeit vom letzten move zur aktuellen Zeit
-  //   timePassed = timePassed / 1000;
-  //   return timePassed < timeInSek;
-  // }
-
   setBubbleShotAnimationTime(time) {
     this.bubbleShotAnimationTime = true;
     setTimeout(() => {
@@ -267,6 +261,4 @@ class Character extends MovableObject {
     }
     this.currentImage == 0;
   }
-
-  slap() {}
 }

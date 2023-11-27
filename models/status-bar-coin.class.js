@@ -13,7 +13,7 @@ class StatusbarCoin extends DrawableObjects {
     super();
     this.loadImage("img/4.Marcadores/Purple/poisonStatus0.png");
     this.loadImages(this.IMAGES_STATUSBAR_COIN);
-    this.x = 395;
+    this.x = 510;
     this.y = 0;
     this.width = 180;
     this.height = 50;
