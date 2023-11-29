@@ -53,7 +53,6 @@ class World {
   checkCharacterCollisionsEnboss() {
       if (this.character.isColliding(this.endboss)) {
         this.character.hit();
-        this.statusBarLife.setPercentage(this.character.healthPoints);
       }
   }
 
@@ -125,6 +124,7 @@ class World {
           // Entferne die Blase aus dem Array der aktiven Blasen
           this.shotableObject.splice(shotIndex, 1);
           this.endboss.hit();
+          this.statusBarEndboss.setPercentage(this.endboss.healthPoints);
           console.log('healtPoints', this.endboss.healthPoints)
         }
     });
