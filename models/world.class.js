@@ -91,6 +91,7 @@ class World {
     if (this.character.x > 2050) {
       this.endbossSpawning = true;
       this.endboss.endbossIntro = true;
+      this.statusBarEndboss.y = 40;
     }
   }
 
