@@ -53,6 +53,7 @@ class World {
   checkCharacterCollisionsEnboss() {
       if (this.character.isColliding(this.endboss)) {
         this.character.hit();
+        this.statusBarLife.setPercentage(this.character.healthPoints);
       }
   }
 
