@@ -1,6 +1,6 @@
 class Endboss extends MovableObject {
   y = -400;
-  x = 720*3.4;
+  x = 720 * 3.4;
   i = 0;
   speed = 1.5;
   height = 320;
@@ -9,6 +9,7 @@ class Endboss extends MovableObject {
   attackTime;
   lastAttack;
   healthPoints = 15;
+  endbossDead = false;
   firstContact = false;
 
   IMAGES_FLOATING = [
@@ -49,6 +50,21 @@ class Endboss extends MovableObject {
     "img/2.Enemy/finalEnemy/Attack/6.png",
   ];
 
+  IMAGES_HURT = [
+    "img/2.Enemy/finalEnemy/Hurt/1.png",
+    "img/2.Enemy/finalEnemy/Hurt/2.png",
+    "img/2.Enemy/finalEnemy/Hurt/3.png",
+    "img/2.Enemy/finalEnemy/Hurt/4.png",
+  ];
+
+  IMAGES_DEAD = [
+    "img/2.Enemy/finalEnemy/Dead/dead1.png",
+    "img/2.Enemy/finalEnemy/Dead/dead2.png",
+    "img/2.Enemy/finalEnemy/Dead/dead3.png",
+    "img/2.Enemy/finalEnemy/Dead/dead4.png",
+    "img/2.Enemy/finalEnemy/Dead/dead5.png",
+  ];
+
   offset = {
     top: 140,
     left: 15,
@@ -62,8 +78,11 @@ class Endboss extends MovableObject {
     this.loadImages(this.IMAGES_SPAWNING);
     this.loadImages(this.IMAGES_FLOATING);
     this.loadImages(this.IMAGES_ATTACK);
+    this.loadImages(this.IMAGES_HURT);
+    this.loadImages(this.IMAGES_DEAD);
     this.animate();
     this.setAttackTime();
+    this.lastHit = new Date().getTime();
   }
 
   animate() {
@@ -74,8 +93,10 @@ class Endboss extends MovableObject {
       } else if (this.isAttacking()) {
         this.attackAnimation();
         this.moveLeft(this.speed + 15);
-      }else if (this.isDead()) {
-        console.log('death');
+      } else if (this.isDead()) {
+        console.log("death");
+      } else if(this.isHurt){
+        console.log('hurt')
       } else {
         this.playAnimation(this.IMAGES_FLOATING);
       }
