@@ -11,6 +11,7 @@ class Endboss extends MovableObject {
   healthPoints = 15;
   endbossDead = false;
   firstContact = false;
+  deadTime = 0;
 
   IMAGES_FLOATING = [
     "img/2.Enemy/finalEnemy/2.floating/1.png",
@@ -86,17 +87,18 @@ class Endboss extends MovableObject {
   }
 
   animate() {
+    console.log(this.isHurt());
     this.currentImage = 0;
     setInterval(() => {
-      if (this.bossIntro()) {
+      if (this.bossIntro() && !this.isDead()) {
         this.introAnimation();
-      } else if (this.isAttacking()) {
+      } else if (!this.isDead() && this.isAttacking() && !this.isHurt()) {
         this.attackAnimation();
         this.moveLeft(this.speed + 15);
       } else if (this.isDead()) {
-        console.log("death");
-      } else if(this.isHurt){
-        console.log('hurt')
+        this.deadAnimation();
+      } else if (this.isHurt()) {
+        this.playAnimation(this.IMAGES_HURT);
       } else {
         this.playAnimation(this.IMAGES_FLOATING);
       }
@@ -126,8 +128,10 @@ class Endboss extends MovableObject {
         this.up = false;
         this.down = true;
       }
-      this.moveUpAndDown(this.speed);
-      this.moveLeft(0.2);
+      if (!this.isDead()) {
+        this.moveUpAndDown(this.speed);
+        this.moveLeft(0.2);
+      }
     }, 1000 / 60);
   }
 
@@ -153,5 +157,17 @@ class Endboss extends MovableObject {
         this.attackTime = new Date().getTime() + 5000;
       }
     }, 1000);
+  }
+
+  deadAnimation() {
+    if (this.deadTime >= 3) {
+      this.loadImage(this.IMAGES_DEAD[4]);
+    } else {
+      this.playAnimation(this.IMAGES_DEAD);
+    }
+    if (this.y > -70) {
+      this.y -= 10;
+    }
+    this.deadTime++;
   }
 }

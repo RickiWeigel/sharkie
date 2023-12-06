@@ -36,7 +36,7 @@ class MovableObject extends DrawableObjects {
 
   hit() {
     this.healthPoints -= 5;
-    if (this.healthPoints < 0) {
+    if (this.healthPoints <= 0) {
       this.healthPoints = 0;
     } else {
       this.lastHit = new Date().getTime(); //speichert die Zeit
