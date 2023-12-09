@@ -21,6 +21,31 @@ function startGame(){
   initWorld();
 }
 
+
+function fullscreen(){
+  let screen = document.getElementById("screen");
+  enterFullscreen(screen);
+}
+
+function enterFullscreen(element) {
+  if(element.requestFullscreen) {
+    element.requestFullscreen();
+  } else if(element.msRequestFullscreen) {      // for IE11 (remove June 15, 2022)
+    element.msRequestFullscreen();
+  } else if(element.webkitRequestFullscreen) {  // iOS Safari
+    element.webkitRequestFullscreen();
+  }
+}
+
+
+function exitFullscreen() {
+  if(document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if(document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  }
+}
+
 window.addEventListener("keydown", (e) => {
   if (e.key == "ArrowLeft") {
     keyboard.LEFT = true;
