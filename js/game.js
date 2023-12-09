@@ -4,7 +4,7 @@ let keyboard = new Keyboard();
 
 function init() {
   canvas = document.getElementById("canvas");
-  
+  initLevel();
 }
 
 function initWorld(){
@@ -13,6 +13,12 @@ function initWorld(){
 
 function clearAllIntervals() {
   for (let i = 1; i < 9999; i++) window.clearInterval(i);
+}
+
+function startGame(){
+  let startScreen = document.getElementById("startScreen");
+  startScreen.classList.add('d-none');
+  initWorld();
 }
 
 window.addEventListener("keydown", (e) => {

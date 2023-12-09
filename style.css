@@ -61,6 +61,19 @@ h1 {
     background-size: cover;
 }
 
+.startScreen img{
+    position: absolute;
+    right: 15%;
+    bottom: 15%;
+    width: clamp(80px, 30vw, 200px);
+    cursor: pointer;
+}
+
+.startScreen img:hover {
+    filter: drop-shadow(0 0 10px #ffffff80);
+
+}
+
 
 /* Smartphone */
 @media only screen and (max-width: 720px){

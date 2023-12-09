@@ -87,7 +87,6 @@ class Endboss extends MovableObject {
   }
 
   animate() {
-    console.log(this.isHurt());
     this.currentImage = 0;
     setInterval(() => {
       if (this.bossIntro() && !this.isDead()) {
@@ -167,6 +166,8 @@ class Endboss extends MovableObject {
     }
     if (this.y > -70) {
       this.y -= 10;
+    } else if (this.y <= 70){
+      clearAllIntervals();
     }
     this.deadTime++;
   }

@@ -59,7 +59,7 @@ class World {
 
   isCharacterCloseTo() {
     this.level.enemies.forEach((enemy) => {
-      if (this.character.isNearToSharkie(enemy) && this.character.slapAnimationTime) {
+      if (enemy instanceof Pufferfish && this.character.isNearToSharkie(enemy) && this.character.slapAnimationTime) {
         setTimeout(() => {
           enemy.deadAnimation(this.character.otherDirection);
         }, 200);
@@ -127,7 +127,6 @@ class World {
           this.shotableObject.splice(shotIndex, 1);
           this.endboss.hit();
           this.statusBarEndboss.setPercentage(this.endboss.healthPoints);
-          console.log('healtPoints', this.endboss.healthPoints)
         }
     });
   }
