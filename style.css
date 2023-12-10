@@ -61,7 +61,7 @@ h1 {
     background-size: cover;
 }
 
-.startScreen img{
+#buttonStart{
     position: absolute;
     right: 15%;
     bottom: 15%;
@@ -69,9 +69,8 @@ h1 {
     cursor: pointer;
 }
 
-.startScreen img:hover {
+.button:hover {
     filter: drop-shadow(0 0 10px #ffffff80);
-
 }
 
 
