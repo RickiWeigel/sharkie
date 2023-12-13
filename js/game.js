@@ -21,20 +21,29 @@ function startGame(){
   initWorld();
 }
 
-
-function fullscreen(){
-  let screen = document.getElementById("screen");
-  enterFullscreen(screen);
+function setCanvasSizeFullscreen() {
+  let canvas = document.getElementById('canvas');
+  canvas.style.width = '80%';
+  canvas.style.height = '100%';
 }
 
-function enterFullscreen(element) {
-  if(element.requestFullscreen) {
-    element.requestFullscreen();
-  } else if(element.msRequestFullscreen) {      // for IE11 (remove June 15, 2022)
-    element.msRequestFullscreen();
-  } else if(element.webkitRequestFullscreen) {  // iOS Safari
-    element.webkitRequestFullscreen();
+function setCanvasSizeNormalscreen() {
+  let canvas = document.getElementById('canvas');
+  canvas.style.width = '720px';
+  canvas.style.height = '480px';
+}
+
+
+function enterFullscreen() {
+  let screen = document.getElementById("screen");
+  if(screen.requestFullscreen) {
+    screen.requestFullscreen();
+  } else if(screen.msRequestFullscreen) {      // for IE11 (remove June 15, 2022)
+    screen.msRequestFullscreen();
+  } else if(screen.webkitRequestFullscreen) {  // iOS Safari
+    screen.webkitRequestFullscreen();
   }
+  setCanvasSizeFullscreen();
 }
 
 
@@ -44,7 +53,15 @@ function exitFullscreen() {
   } else if(document.webkitExitFullscreen) {
     document.webkitExitFullscreen();
   }
+  setCanvasSizeNormalscreen()
 }
+
+document.addEventListener('fullscreenchange', function() {
+  if (!document.fullscreenElement) {
+    // Der Vollbildmodus wurde verlassen
+    setCanvasSizeNormalscreen();
+  }
+});
 
 window.addEventListener("keydown", (e) => {
   if (e.key == "ArrowLeft") {
