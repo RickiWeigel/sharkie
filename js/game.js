@@ -38,9 +38,9 @@ function enterFullscreen() {
   let screen = document.getElementById("screen");
   if(screen.requestFullscreen) {
     screen.requestFullscreen();
-  } else if(screen.msRequestFullscreen) {      // for IE11 (remove June 15, 2022)
+  } else if(screen.msRequestFullscreen) {
     screen.msRequestFullscreen();
-  } else if(screen.webkitRequestFullscreen) {  // iOS Safari
+  } else if(screen.webkitRequestFullscreen) {
     screen.webkitRequestFullscreen();
   }
   setCanvasSizeFullscreen();
