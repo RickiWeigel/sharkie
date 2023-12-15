@@ -21,6 +21,13 @@ function startGame(){
   initWorld();
 }
 
+function endGameYouWin(){
+  let endScreen = document.getElementById("endScreen");
+  let img = document.getElementById('youWin');
+  endScreen.classList.remove('v-none');
+  img.classList.remove('d-none');
+}
+
 function setCanvasSizeFullscreen() {
   let canvas = document.getElementById('canvas');
   canvas.style.width = '80%';

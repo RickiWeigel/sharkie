@@ -168,6 +168,7 @@ class Endboss extends MovableObject {
       this.y -= 10;
     } else if (this.y <= 70){
       clearAllIntervals();
+      endGameYouWin();
     }
     this.deadTime++;
   }
