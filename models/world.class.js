@@ -15,6 +15,7 @@ class World {
   camera_x = 0;
   endbossSpawning = false;
 
+
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
@@ -23,7 +24,7 @@ class World {
     this.setWorld();
     this.run();
   }
-
+  
   setWorld() {
     this.character.world = this;
   }

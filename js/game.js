@@ -1,14 +1,19 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let gameIsStarted = false
+let movableObject = new MovableObject;
 
 function init() {
   canvas = document.getElementById("canvas");
   initLevel();
+  muteAllAudio();
 }
 
 function initWorld(){
   world = new World(canvas, keyboard);
+  gameIsStarted = true
+  unmuteAllAudio();
 }
 
 function clearAllIntervals() {

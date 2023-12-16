@@ -111,7 +111,7 @@ class Character extends MovableObject {
   bubbleShotAnimationTime = false;
   slapAnimationTime = false;
   world;
-  swim_sound = new Audio("audio/swim.mp3");
+ 
   offset = {
     top: 130,
     left: 60,
@@ -135,26 +135,25 @@ class Character extends MovableObject {
   }
 
   animate() {
-    this.swim_sound.pause();
-    this.swim_sound.volume = 0.03;
+    sharkieSwimAudioPause();
     setInterval(() => {
       if (!this.isDead()) {
         if (this.world.keyboard.RIGHT && this.x < level1.level_end_x) {
-          this.swim_sound.play();
+          sharkieSwimAudio();
           this.moveRight(5);
           this.otherDirection = false;
           this.lastMove = new Date().getTime();
         }
 
         if (this.world.keyboard.LEFT && this.x > 0) {
-          this.swim_sound.play();
+          sharkieSwimAudio();
           this.moveLeft(5);
           this.otherDirection = true;
           this.lastMove = new Date().getTime();
         }
 
         if (this.world.keyboard.UP) {
-          this.swim_sound.play();
+          sharkieSwimAudio();
           if (this.y > -80) {
             this.moveUp(5);
             this.lastMove = new Date().getTime();
@@ -162,7 +161,7 @@ class Character extends MovableObject {
         }
 
         if (this.world.keyboard.DOWN) {
-          this.swim_sound.play();
+          sharkieSwimAudio();
           if (this.y < 280) {
             this.moveDown(5);
             this.lastMove = new Date().getTime();

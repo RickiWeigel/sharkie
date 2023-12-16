@@ -14,6 +14,10 @@ class MovableObject extends DrawableObjects {
   up = false;
   down = false;
 
+  
+  
+
+
   isColliding(mo) {
     return (
       this.x + this.offset.left + this.width - this.offset.right >= mo.x + mo.offset.left &&
@@ -27,8 +31,8 @@ class MovableObject extends DrawableObjects {
     let spaceX = 35;
     let spaceY = 10;
     return (
-      this.x + this.offset.left + this.width - this.offset.right + spaceX >= mo.x + mo.offset.left&&
-      this.y + this.offset.top + this.height - this.offset.bottom + spaceY >= mo.y + mo.offset.top&&
+      this.x + this.offset.left + this.width - this.offset.right + spaceX >= mo.x + mo.offset.left &&
+      this.y + this.offset.top + this.height - this.offset.bottom + spaceY >= mo.y + mo.offset.top &&
       this.x + this.offset.left - spaceX <= mo.x + mo.offset.left + mo.width - mo.offset.right &&
       this.y + this.offset.top <= mo.y + mo.offset.top + mo.height - mo.offset.bottom
     );
