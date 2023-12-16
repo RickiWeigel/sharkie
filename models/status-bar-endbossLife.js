@@ -11,7 +11,7 @@ class StatusbarEnbossLife extends DrawableObjects {
     constructor() {
       super();
       this.loadImages(this.IMAGES_STATUSBAR);
-      this.x = 558;
+      this.x = 458;
       this.y = -40;
       this.width = 130;
       this.height = 35;

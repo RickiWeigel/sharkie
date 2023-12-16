@@ -38,10 +38,22 @@ function endGameOver(){
 function restart(){
   let endScreen = document.getElementById("endScreen");
   let youWin = document.getElementById('youWin');
+  let gameOver = document.getElementById('gameOver');
   endScreen.classList.add('v-none');
+  gameOver.classList.add('d-none');
   youWin.classList.add('d-none');
   initLevel();
   initWorld();
+}
+
+function backToMenuFromHowToPlay(){
+  let howToPlay = document.getElementById("howToPlayScreen");
+  howToPlay.classList.add('v-none');
+}
+
+function showHowToPlay(){
+  let howToPlay = document.getElementById("howToPlayScreen");
+  howToPlay.classList.remove('v-none');
 }
 
 function setCanvasSizeFullscreen() {

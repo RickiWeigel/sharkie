@@ -3,11 +3,17 @@
     src: url(fonts/LuckiestGuy-Regular.ttf) format('truetype');
 }
 
+* {
+    box-sizing: border-box
+}
+
+
 html {
     font-family: 'Luckiest Guy', sans-serif;
 }
 
 body {
+    color: white;
     display: flex;
     height: 100vh;
     justify-content: center;
@@ -23,7 +29,7 @@ body {
 }
 
 canvas {
-    background-color: black;
+    background-color: rgb(255, 255, 255);
     border-radius: 10px;
     box-shadow: 0px 0px 22px 15px rgba(255, 255, 255, 0.5);
     display: block;
@@ -37,6 +43,11 @@ h1 {
     text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
+h2 {
+    margin: 0;
+    letter-spacing: 8px;
+}
+
 .d-none {
     display: none;
 }
@@ -46,6 +57,10 @@ h1 {
 }
 
 #screen {
+    background-image: url(img/3.Background/Legacy/Dark/background.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     position: relative;
     display: flex;
     justify-content: center;
@@ -54,7 +69,8 @@ h1 {
 }
 
 .startScreen,
-.endScreen {
+.endScreen,
+.howToPlayScreen {
     position: absolute;
     top: 0;
     left: 0;
@@ -78,34 +94,101 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
+    backdrop-filter: blur(2px);
 }
 
-.endScreen img{
+.howToPlayScreen {
+    background-color: rgba(74, 74, 75, 0.151);
+    backdrop-filter: blur(4px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.info-instructions {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 80%;
+    width: 90%;
+    gap: 30px;
+}
+
+table {
+    width: 100%;
+    height: 90%;
+}
+
+.info-instruction-column {
+    width: auto;
+    text-align: center;
+}
+
+.instruction-text {
+    color: white;
+    margin-left: 30px;
+    font-size: 20px;
+}
+
+.info-image {
+    width: clamp(60px, 20vw, 180px);
+    object-fit: cover;
+}
+
+.info-image2 {
+    width: clamp(60px, 20vw, 40px);
+    object-fit: cover;
+}
+
+.info-image3 {
+    width: clamp(60px, 20vw, 180px);
+    object-fit: cover;
+}
+
+.backTo {
+    font-size: 36px;
+    position: absolute;
+    top: 5px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.endScreen img {
     border-radius: 10px;
 }
 
-#youWin{
+#youWin {
     width: 100%;
     height: 100%;
 }
 
-#gameOver{
+#gameOver {
     width: 98%;
 }
 
-#tryAgain{
-    width: clamp(80px, 30vw, 220px);;
+#tryAgain {
+    width: clamp(80px, 30vw, 220px);
+    ;
     position: absolute;
     bottom: 15%;
 }
 
+#buttonStart,
+#buttonHowToPlay {
+    width: clamp(80px, 22vw, 160px);
+}
 
-
-#buttonStart {
+.menu {
+    display: flex;
+    flex-direction: column;
     position: absolute;
-    right: 15%;
+    right: 10%;
     bottom: 15%;
-    width: clamp(80px, 30vw, 200px);
+    gap: 8px;
+    width: clamp(80px, 30vw, 160px);
 }
 
 #buttonFullscreen {

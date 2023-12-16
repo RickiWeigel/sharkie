@@ -34,12 +34,51 @@
 
     <div id="screen">
         <div class="startScreen" id="startScreen">
-            <img class="button" id="buttonStart" src="img/buttons/start/1.png" onclick="startGame()">
+            <div class="menu">
+                <img class="button" id="buttonStart" src="img/buttons/start/1.png" onclick="startGame()">
+                <img class="button" id="buttonHowToPlay" src="img/buttons/key/howToPlay.png" onclick="showHowToPlay()">
+            </div>
         </div>
+
+        <div class="howToPlayScreen v-none" id="howToPlayScreen">
+            <div class="backTo" onclick="backToMenuFromHowToPlay()">X</div>
+            <h2 class="info-title">Instructions</h2>
+            <div class="info-instructions">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="info-instruction-column">
+                                <img class="info-image" src="img/buttons/key/arrowKeys.png">
+                            </td>
+                            <td>
+                                <p class="instruction-text">Move Sharkie with the arrow keys</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="info-instruction-column">
+                                <img class="info-image2" src="img/buttons/key/Dkey.png">
+                            </td>
+                            <td>
+                                <p class="instruction-text">Make a finslap to attack the small fishes</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="info-instruction-column">
+                                <img class="info-image3" src="img/buttons/key/SpaceBarKey.png">
+                            </td>
+                            <td>
+                                <p class="instruction-text">Make bubbles to attack jellyfishes and the endboss</p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
         <div class="v-none endScreen" id="endScreen">
-           <img class="gameOver d-none" id="gameOver" src="img/buttons/titles/endScreen/gameOver.png">
-           <img class="youWin d-none" id="youWin" src="img/buttons/titles/endScreen/youWin.png">
-           <img class="button" onclick="restart()" id="tryAgain" src="img/buttons/tryAgain/tryAgain.png">
+            <img class="gameOver d-none" id="gameOver" src="img/buttons/titles/endScreen/gameOver.png">
+            <img class="youWin d-none" id="youWin" src="img/buttons/titles/endScreen/youWin.png">
+            <img class="button" onclick="restart()" id="tryAgain" src="img/buttons/tryAgain/tryAgain.png">
         </div>
         <canvas id="canvas" width="720" height="480"></canvas>
     </div>
