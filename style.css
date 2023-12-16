@@ -90,7 +90,7 @@ h2 {
 }
 
 .endScreen {
-    background-color: rgba(51, 124, 189, 0.8);
+    background-color: rgba(51, 124, 189, 0.3);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -171,7 +171,6 @@ table {
 
 #tryAgain {
     width: clamp(80px, 30vw, 220px);
-    ;
     position: absolute;
     bottom: 15%;
 }
