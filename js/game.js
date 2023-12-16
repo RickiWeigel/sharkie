@@ -21,11 +21,27 @@ function startGame(){
   initWorld();
 }
 
-function endGameYouWin(){
+function endGameScreen(imgVar){
   let endScreen = document.getElementById("endScreen");
-  let img = document.getElementById('youWin');
+  let img = document.getElementById(imgVar);
   endScreen.classList.remove('v-none');
   img.classList.remove('d-none');
+}
+
+function endGameOver(){
+  let endScreen = document.getElementById("endScreen");
+  let img = document.getElementById('gameOver');
+  endScreen.classList.remove('v-none');
+  img.classList.remove('d-none');
+}
+
+function restart(){
+  let endScreen = document.getElementById("endScreen");
+  let youWin = document.getElementById('youWin');
+  endScreen.classList.add('v-none');
+  youWin.classList.add('d-none');
+  initLevel();
+  initWorld();
 }
 
 function setCanvasSizeFullscreen() {

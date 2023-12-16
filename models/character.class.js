@@ -222,6 +222,9 @@ class Character extends MovableObject {
     }
     if (this.y > -70) {
       this.y -= 10;
+    } else if(this.y <= 70){
+      clearAllIntervals();
+      endGameScreen('gameOver');
     }
     this.deadTime++;
   }
