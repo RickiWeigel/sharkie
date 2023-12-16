@@ -62,6 +62,7 @@ class World {
     this.level.enemies.forEach((enemy) => {
       if (enemy instanceof Pufferfish && this.character.isNearToSharkie(enemy) && this.character.slapAnimationTime) {
         setTimeout(() => {
+          enemy.speed = 0;
           enemy.deadAnimation(this.character.otherDirection);
         }, 200);
       }
@@ -168,7 +169,7 @@ class World {
     }
 
     mo.draw(this.ctx);
-    mo.drawHitbox(this.ctx);
+    // mo.drawHitbox(this.ctx);
 
     if (mo.otherDirection) {
       this.flipImageBack(mo);
