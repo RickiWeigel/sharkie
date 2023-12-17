@@ -25,7 +25,7 @@ class Bubble extends MovableObject {
 
   
   moveBubbleUp(bubbleSpeed) {
-    this.bubble_sound.volume = Math.random() * 0.01;
+    this.bubble_sound.volume = Math.random() * 0.005;
     this.bubble_sound.pause();
     setTimeout(() => {
       setInterval(() => {
