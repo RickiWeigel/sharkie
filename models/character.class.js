@@ -218,6 +218,10 @@ class Character extends MovableObject {
 
   checkSlap() {
     if (this.world.keyboard.D && !this.isHurt()) {
+      setTimeout(() => {
+        sharkieSlap();
+      }, 300);
+      
       this.lastMove = new Date().getTime();
       this.currentImage = 0;
       this.setSlapAnimationTime(800);

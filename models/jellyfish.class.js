@@ -43,6 +43,9 @@ class Jellyfish extends MovableObject {
     setInterval(() => {
       if (this.isShot) {
         this.playAnimation(this.IMAGES_DEAD);
+        setTimeout(() => {
+        }, 200);
+        
       } else {
         this.playAnimation(this.IMAGES_IDLE);
       }

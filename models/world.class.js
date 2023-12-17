@@ -103,6 +103,10 @@ class World {
         if (shot.isColliding(jelly)) {
           this.shotableObject.splice(shotIndex, 1);
           this.level.enemies[index].isShot = true;
+          if (!mute) {
+            jellyFishBubble();
+          }
+            
         }
       });
     });
