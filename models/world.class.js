@@ -15,7 +15,6 @@ class World {
   camera_x = 0;
   endbossSpawning = false;
 
-
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
     this.canvas = canvas;
@@ -24,7 +23,7 @@ class World {
     this.setWorld();
     this.run();
   }
-  
+
   setWorld() {
     this.character.world = this;
   }
@@ -38,7 +37,7 @@ class World {
       this.isCharacterCloseTo();
       this.checkSharkieInBossArea();
       this.checkCharacterCollisionsEnboss();
-      this.checkCollisionBubbleWithEndboss()
+      this.checkCollisionBubbleWithEndboss();
     }, 100);
   }
 
@@ -52,10 +51,10 @@ class World {
   }
 
   checkCharacterCollisionsEnboss() {
-      if (this.character.isColliding(this.endboss)) {
-        this.character.hit();
-        this.statusBarLife.setPercentage(this.character.healthPoints);
-      }
+    if (this.character.isColliding(this.endboss)) {
+      this.character.hit();
+      this.statusBarLife.setPercentage(this.character.healthPoints);
+    }
   }
 
   isCharacterCloseTo() {
@@ -97,70 +96,62 @@ class World {
     }
   }
 
-  /**
-   * Überprüft, ob Blasen mit Quallen kollidieren und aktualisiert den Spielzustand entsprechend.
-   */
   checkCollisionBubbleWithJellyfish() {
-    // Array mit allen Quallen im aktuellen Level
     const jellyfishArray = level1.enemies.filter((enemy) => enemy instanceof Jellyfish);
-
-    // Iteriere über alle aktiven Blasen
     this.shotableObject.forEach((shot, shotIndex) => {
-      // Iteriere über alle Quallen im Level
       jellyfishArray.forEach((jelly, index) => {
-        // Überprüfe, ob eine Blase mit einer Qualle kollidiert
         if (shot.isColliding(jelly)) {
-          // Entferne die Blase aus dem Array der aktiven Blasen
           this.shotableObject.splice(shotIndex, 1);
-          // Markiere die Qualle als getroffen
           this.level.enemies[index].isShot = true;
         }
       });
     });
   }
 
-  checkCollisionBubbleWithEndboss(){
+  checkCollisionBubbleWithEndboss() {
     this.shotableObject.forEach((shot, shotIndex) => {
-      // Iteriere über alle Quallen im Level
-      
-        // Überprüfe, ob eine Blase mit einer Qualle kollidiert
-        if (shot.isColliding(this.endboss)) {
-          // Entferne die Blase aus dem Array der aktiven Blasen
-          this.shotableObject.splice(shotIndex, 1);
-          this.endboss.hit();
-          this.statusBarEndboss.setPercentage(this.endboss.healthPoints);
-        }
+      if (shot.isColliding(this.endboss)) {
+        this.shotableObject.splice(shotIndex, 1);
+        this.endboss.hit();
+        this.statusBarEndboss.setPercentage(this.endboss.healthPoints);
+      }
     });
   }
 
-
-
   draw() {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height); // altes canvas wird gecleart
-
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.translate(this.camera_x, 0);
-    this.addObjectsToMap(this.level.backgroundObjects);
-    this.addObjectsToMap(this.level.enemies);
 
+    this.drawBackgroundObjects();
+    this.drawMovingObjects();
+    this.drawStatusBarObjects();
+
+    let self = this;
+    requestAnimationFrame(function () {
+      self.draw();
+    });
+  }
+
+  drawBackgroundObjects() {
+    this.addObjectsToMap(this.level.backgroundObjects);
+  }
+
+  drawMovingObjects() {
+    this.addObjectsToMap(this.level.enemies);
     this.addToMap(this.character);
     this.addToMap(this.endboss);
-
     this.addObjectsToMap(this.shotableObject);
     this.addObjectsToMap(this.level.poison);
     this.addObjectsToMap(this.level.coin);
     this.addObjectsToMap(this.level.bubbles);
     this.ctx.translate(-this.camera_x, 0);
+  }
 
+  drawStatusBarObjects() {
     this.addToMap(this.statusBarLife);
     this.addToMap(this.statusBarPoison);
     this.addToMap(this.statusBarCoin);
     this.addToMap(this.statusBarEndboss);
-
-    //draw wird immer wieder aufgerufen.
-    let self = this;
-    requestAnimationFrame(function () {
-      self.draw();
-    });
   }
 
   addToMap(mo) {

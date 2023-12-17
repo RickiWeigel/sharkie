@@ -96,22 +96,22 @@ class Character extends MovableObject {
   ];
 
   IMAGES_SLAP = [
-    'img/1.Sharkie/4.Attack/Fin slap/1.png',
-    'img/1.Sharkie/4.Attack/Fin slap/2.png',
-    'img/1.Sharkie/4.Attack/Fin slap/3.png',
-    'img/1.Sharkie/4.Attack/Fin slap/4.png',
-    'img/1.Sharkie/4.Attack/Fin slap/5.png',
-    'img/1.Sharkie/4.Attack/Fin slap/6.png',
-    'img/1.Sharkie/4.Attack/Fin slap/7.png',
-    'img/1.Sharkie/4.Attack/Fin slap/8.png',
-  ]
+    "img/1.Sharkie/4.Attack/Fin slap/1.png",
+    "img/1.Sharkie/4.Attack/Fin slap/2.png",
+    "img/1.Sharkie/4.Attack/Fin slap/3.png",
+    "img/1.Sharkie/4.Attack/Fin slap/4.png",
+    "img/1.Sharkie/4.Attack/Fin slap/5.png",
+    "img/1.Sharkie/4.Attack/Fin slap/6.png",
+    "img/1.Sharkie/4.Attack/Fin slap/7.png",
+    "img/1.Sharkie/4.Attack/Fin slap/8.png",
+  ];
 
   lastMove = 0;
   lastShot = 0;
   bubbleShotAnimationTime = false;
   slapAnimationTime = false;
   world;
- 
+
   offset = {
     top: 130,
     left: 60,
@@ -134,83 +134,119 @@ class Character extends MovableObject {
     this.lastShot = new Date().getTime();
   }
 
-  animate() {
+  sharkieAnimation(){
+    setInterval(() => {
+      if (this.shouldPerformLongIdle()) {
+        this.longIdleAnimation();
+      } else if (this.isDead()) {
+        this.deadAnimation();
+      } else if (this.shouldPerformHurtAnimation()) {
+        this.playAnimation(this.IMAGES_HURT);
+      } else if (this.shouldPerformSwimAnimation()) {
+        this.playAnimation(this.IMAGES_SWIM);
+      } else if (this.shouldPerformBubbleShotAnimation()) {
+        this.checkBubbleShot();
+        this.playAnimation(this.IMAGES_BUBBLE_SHOT);
+      } else if (this.shouldPerformSlapAnimation()) {
+        this.playAnimation(this.IMAGES_SLAP);
+      } else {
+        this.playAnimation(this.IMAGES_IDLE);
+      }
+    }, 1000 / 12);
+  }
+
+  sharkieMovement() {
     sharkieSwimAudioPause();
     setInterval(() => {
       if (!this.isDead()) {
-        if (this.world.keyboard.RIGHT && this.x < level1.level_end_x) {
-          sharkieSwimAudio();
-          this.moveRight(5);
-          this.otherDirection = false;
-          this.lastMove = new Date().getTime();
-        }
-
-        if (this.world.keyboard.LEFT && this.x > 0) {
-          sharkieSwimAudio();
-          this.moveLeft(5);
-          this.otherDirection = true;
-          this.lastMove = new Date().getTime();
-        }
-
-        if (this.world.keyboard.UP) {
-          sharkieSwimAudio();
-          if (this.y > -80) {
-            this.moveUp(5);
-            this.lastMove = new Date().getTime();
-          }
-        }
-
-        if (this.world.keyboard.DOWN) {
-          sharkieSwimAudio();
-          if (this.y < 280) {
-            this.moveDown(5);
-            this.lastMove = new Date().getTime();
-          }
-        }
-
-        if (this.world.keyboard.SPACE && this.world.collectedPoison.length > 0) {
-          this.lastMove = new Date().getTime();
-          this.currentImage = 0;
-          this.setBubbleShotAnimationTime(1050);
-        }
-        if (this.world.keyboard.D && !this.isHurt()) {
-          this.lastMove = new Date().getTime();
-          this.currentImage = 0;
-          this.setSlapAnimationTime(800);
-        }
+        this.checkSwimmingRight();
+        this.checkSwimmingLeft();
+        this.checkSwimmingUp();
+        this.checkSwimmingDown();
+        this.sharkieAttacks();
         this.world.camera_x = -this.x + 50;
       }
     }, 1000 / 70);
+  }
 
-    setInterval(() => {
-      if (
-        !this.checkLastMove(8, this.lastMove) &&
-        !this.isDead() &&
-        !this.isHurt()
-      ) {
-        this.longIdleAnimation();
-      } else {
-        if (this.isDead()) {
-          this.deadAnimation();
-        } else if (this.isHurt() && !this.world.keyboard.D) {
-          this.playAnimation(this.IMAGES_HURT);
-        } else if (
-          this.world.keyboard.RIGHT ||
-          this.world.keyboard.LEFT ||
-          this.world.keyboard.UP ||
-          this.world.keyboard.DOWN
-        ) {
-          this.playAnimation(this.IMAGES_SWIM);
-        } else if (this.bubbleShotAnimationTime && this.world.collectedPoison.length > 0) {
-          this.checkBubbleShot();
-          this.playAnimation(this.IMAGES_BUBBLE_SHOT);
-        } else if (this.slapAnimationTime) {
-          this.playAnimation(this.IMAGES_SLAP);
-        } else {
-          this.playAnimation(this.IMAGES_IDLE);
-        }
+  sharkieAttacks() {
+    this.checkSlap();
+    if (this.world.keyboard.SPACE && this.world.collectedPoison.length > 0) {
+      this.lastMove = new Date().getTime();
+      this.currentImage = 0;
+      this.setBubbleShotAnimationTime(1050);
+    }
+  }
+
+  checkSwimmingRight() {
+    if (this.world.keyboard.RIGHT && this.x < level1.level_end_x) {
+      sharkieSwimAudio();
+      this.moveRight(5);
+      this.otherDirection = false;
+      this.lastMove = new Date().getTime();
+    }
+  }
+
+  checkSwimmingLeft() {
+    if (this.world.keyboard.LEFT && this.x > 0) {
+      sharkieSwimAudio();
+      this.moveLeft(5);
+      this.otherDirection = true;
+      this.lastMove = new Date().getTime();
+    }
+  }
+
+  checkSwimmingUp() {
+    if (this.world.keyboard.UP) {
+      sharkieSwimAudio();
+      if (this.y > -80) {
+        this.moveUp(5);
+        this.lastMove = new Date().getTime();
       }
-    }, 1000 / 12);
+    }
+  }
+
+  checkSwimmingDown() {
+    if (this.world.keyboard.DOWN) {
+      sharkieSwimAudio();
+      if (this.y < 280) {
+        this.moveDown(5);
+        this.lastMove = new Date().getTime();
+      }
+    }
+  }
+
+  checkSlap() {
+    if (this.world.keyboard.D && !this.isHurt()) {
+      this.lastMove = new Date().getTime();
+      this.currentImage = 0;
+      this.setSlapAnimationTime(800);
+    }
+  }
+
+  shouldPerformLongIdle() {
+    return !this.checkLastMove(8, this.lastMove) && !this.isDead() && !this.isHurt();
+  }
+
+  shouldPerformHurtAnimation() {
+    return this.isHurt() && !this.world.keyboard.D;
+  }
+
+  shouldPerformSwimAnimation() {
+    return this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN;
+  }
+
+  shouldPerformBubbleShotAnimation() {
+    return this.bubbleShotAnimationTime && this.world.collectedPoison.length > 0;
+  }
+
+  shouldPerformSlapAnimation() {
+    return this.slapAnimationTime;
+  }
+
+  animate() {
+    this.sharkieMovement();
+    this.sharkieAnimation();
   }
 
   deadAnimation() {
@@ -221,9 +257,9 @@ class Character extends MovableObject {
     }
     if (this.y > -70) {
       this.y -= 10;
-    } else if(this.y <= 70){
+    } else if (this.y <= 70) {
       clearAllIntervals();
-      endGameScreen('gameOver');
+      endGameScreen("gameOver");
     }
     this.deadTime++;
   }
@@ -256,10 +292,10 @@ class Character extends MovableObject {
   }
 
   checkBubbleShot() {
-    if (this.currentImage == 6) {  
-        let bubble = new ShotableObject(this.x + 200, this.y + 140);
-        this.world.shotableObject.push(bubble);
-        this.world.collectedPoison.splice(0,1);
+    if (this.currentImage == 6) {
+      let bubble = new ShotableObject(this.x + 200, this.y + 140);
+      this.world.shotableObject.push(bubble);
+      this.world.collectedPoison.splice(0, 1);
     }
     this.currentImage == 0;
   }

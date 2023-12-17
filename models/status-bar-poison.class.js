@@ -26,20 +26,19 @@ class StatusbarPoison extends DrawableObjects {
     this.img = this.imageCache[path];
   }
 
-resolveImageIndex() {
+  resolveImageIndex() {
     if (this.availablePoisonBubbles > 8) {
-        return 0;
+      return 0;
     } else if (this.availablePoisonBubbles > 6) {
-        return 1;
+      return 1;
     } else if (this.availablePoisonBubbles > 4) {
-        return 2;
+      return 2;
     } else if (this.availablePoisonBubbles > 2) {
-        return 3;
+      return 3;
     } else if (this.availablePoisonBubbles >= 1) {
-        return 4;
+      return 4;
     } else {
-        return 5;
+      return 5;
     }
+  }
 }
-}
-collectable
