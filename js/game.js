@@ -3,6 +3,7 @@ let world;
 let keyboard = new Keyboard();
 let gameIsStarted = false
 let movableObject = new MovableObject;
+let isFullscreen = false;
 
 function init() {
   canvas = document.getElementById("canvas");
@@ -21,7 +22,9 @@ function clearAllIntervals() {
 }
 
 function startGame(){
-  let startScreen = document.getElementById("startScreen");
+  const startScreen = document.getElementById("startScreen");
+  const volumeImg = document.getElementById("volume");
+  volumeImg.src = "img/buttons/volume.png";
   startScreen.classList.add('d-none');
   initWorld();
 }
@@ -61,6 +64,10 @@ function showHowToPlay(){
   howToPlay.classList.remove('v-none');
 }
 
+function toggleMenu() {
+  document.getElementById('sidebarMenu').classList.toggle('slideIn');
+}
+
 function setCanvasSizeFullscreen() {
   let canvas = document.getElementById('canvas');
   canvas.style.width = '80%';
@@ -73,6 +80,17 @@ function setCanvasSizeNormalscreen() {
   canvas.style.height = '480px';
 }
 
+function toggleFullscreen() {
+  const fullscreenImg = document.getElementById("fullscreen");
+  if (!isFullscreen) {
+      enterFullscreen();
+      fullscreenImg.src = "img/buttons/fullscreenExit.png";
+  } else {
+      exitFullscreen();
+      fullscreenImg.src = "img/buttons/fullscreen.png";
+  }
+  isFullscreen = !isFullscreen;
+}
 
 function enterFullscreen() {
   let screen = document.getElementById("screen");

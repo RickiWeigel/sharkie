@@ -34,6 +34,22 @@
     <h1>SHARKIE</h1>
 
     <div id="screen">
+
+        <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
+        <label for="openSidebarMenu" class="sidebarIconToggle" onclick="toggleMenu()">
+            <div class="spinner diagonal part-1"></div>
+            <div class="spinner horizontal"></div>
+            <div class="spinner diagonal part-2"></div>
+        </label>
+        <div id="sidebarMenu">
+            <ul class="sidebarMenuInner">
+                <li onclick="showHowToPlay()"><img src="img/buttons/info.png"> Instruction</li>
+                <li onclick="toggleFullscreen()"><img id="fullscreen" src="img/buttons/fullscreen.png"> Fullscreen</li>
+                <li onclick="toggleAudio()"><img id="volume" src="img/buttons/mute.png"> Volume</li>
+            </ul>
+        </div>
+
+
         <div class="startScreen" id="startScreen">
             <div class="menu">
                 <img class="button" id="buttonStart" src="img/buttons/start/1.png" onclick="startGame()">
@@ -71,6 +87,10 @@
                                 <p class="instruction-text">Make bubbles to attack jellyfishes and the endboss</p>
                             </td>
                         </tr>
+                        <tr>
+                               <span>Navigate Sharkie through the deep of the ocean. Let him collect coins and poison
+                                bottles, so Sharkie can make bubbles against enemeys.</span> 
+                        </tr>
                     </tbody>
                 </table>
             </div>
@@ -97,11 +117,12 @@
         </div>
 
         <div class="mobilePanelRight" id="mobilePanelRight">
-            <img class="panelBtnRight" id="btn-bubble" src="img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png">
+            <img class="panelBtnRight" id="btn-bubble"
+                src="img/1.Sharkie/4.Attack/Bubble trap/Poisoned Bubble (for whale).png">
             <img class="panelBtnRight" id="btn-slap" src="img/buttons/key/slapBtn.png">
         </div>
     </div>
-    <img class="button" id="buttonFullscreen" src="img/buttons/fullscreen/fullscreen.png" onclick="enterFullscreen()">
+    <img class="button" id="buttonFullscreen" src="img/buttons/fullscreen/fullscreen.png" onclick="toggleFullscreen()">
 
 
 

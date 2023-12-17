@@ -1,9 +1,9 @@
 class StatusbarEnbossLife extends DrawableObjects {
     IMAGES_STATUSBAR = [
-      "img/4.Marcadores/Purple/lifeStatusEndboss0.png",
-      "img/4.Marcadores/Purple/lifeStatusEndboss20.png",
-      "img/4.Marcadores/Purple/lifeStatusEndboss60.png",
-      "img/4.Marcadores/Purple/lifeStatusEndboss100.png",
+      "img/4.Marcadores/statusbar/lifeStatusEndboss0.png",
+      "img/4.Marcadores/statusbar/lifeStatusEndboss20.png",
+      "img/4.Marcadores/statusbar/lifeStatusEndboss60.png",
+      "img/4.Marcadores/statusbar/lifeStatusEndboss100.png",
     ];
   
     percentage = 15;
@@ -25,14 +25,9 @@ class StatusbarEnbossLife extends DrawableObjects {
     }
   
     resolveImageIndex() {
-      if (this.percentage > 10) {
-        return 3;
-      } else if (this.percentage <= 10 && this.percentage > 5) {
-        return 2;
-      } else if (this.percentage <= 5 && this.percentage > 0) {
-        return 1;
-      } else {
-        return 0;
-      }
-    }
+      if (this.percentage > 10) return 3;
+      if (this.percentage > 5) return 2;
+      if (this.percentage > 0) return 1;
+      return 0;
+  }
   }
