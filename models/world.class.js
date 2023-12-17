@@ -106,7 +106,6 @@ class World {
           if (!mute) {
             jellyFishBubble();
           }
-            
         }
       });
     });
@@ -117,6 +116,9 @@ class World {
       if (shot.isColliding(this.endboss)) {
         this.shotableObject.splice(shotIndex, 1);
         this.endboss.hit();
+        if (!mute) {
+          jellyFishBubble();
+        }
         this.statusBarEndboss.setPercentage(this.endboss.healthPoints);
       }
     });
