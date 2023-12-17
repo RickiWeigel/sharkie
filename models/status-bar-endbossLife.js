@@ -1,9 +1,9 @@
 class StatusbarEnbossLife extends DrawableObjects {
     IMAGES_STATUSBAR = [
-      "img/4.Marcadores/statusbar/lifeStatusEndboss0.png",
-      "img/4.Marcadores/statusbar/lifeStatusEndboss20.png",
-      "img/4.Marcadores/statusbar/lifeStatusEndboss60.png",
-      "img/4.Marcadores/statusbar/lifeStatusEndboss100.png",
+      "img/collectable/statusbar/lifeStatusEndboss0.png",
+      "img/collectable/statusbar/lifeStatusEndboss20.png",
+      "img/collectable/statusbar/lifeStatusEndboss60.png",
+      "img/collectable/statusbar/lifeStatusEndboss100.png",
     ];
   
     percentage = 15;
@@ -29,5 +29,5 @@ class StatusbarEnbossLife extends DrawableObjects {
       if (this.percentage > 5) return 2;
       if (this.percentage > 0) return 1;
       return 0;
-  }
+  }collectable
   }

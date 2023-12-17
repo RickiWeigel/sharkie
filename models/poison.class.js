@@ -1,13 +1,13 @@
 class Poison extends MovableObject {
   IMAGES_POISON = [
-    "img/4.Marcadores/poison/1.png",
-    "img/4.Marcadores/poison/2.png",
-    "img/4.Marcadores/poison/3.png",
-    "img/4.Marcadores/poison/4.png",
-    "img/4.Marcadores/poison/5.png",
-    "img/4.Marcadores/poison/6.png",
-    "img/4.Marcadores/poison/7.png",
-    "img/4.Marcadores/poison/8.png",
+    "img/collectable/poison/1.png",
+    "img/collectable/poison/2.png",
+    "img/collectable/poison/3.png",
+    "img/collectable/poison/4.png",
+    "img/collectable/poison/5.png",
+    "img/collectable/poison/6.png",
+    "img/collectable/poison/7.png",
+    "img/collectable/poison/8.png",
   ];
   width = 60;
   height = 70;
@@ -21,7 +21,7 @@ class Poison extends MovableObject {
 
   constructor(x, y) {
     super();
-    this.loadImage('img/4.Marcadores/poison/1.png');
+    this.loadImage('img/collectable/poison/1.png');
     this.loadImages(this.IMAGES_POISON);
     this.x = x;
     this.y = y;

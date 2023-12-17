@@ -235,7 +235,7 @@ class Character extends MovableObject {
     } else {
       this.playAnimation(this.IMAGES_LONG_IDLE);
     }
-    if (this.y < 250) {
+    if (this.y < 240) {
       this.y += 8;
     }
     this.deadTime++;

@@ -1,17 +1,17 @@
 class StatusbarPoison extends DrawableObjects {
   IMAGES_STATUSBAR_POISON = [
-    "img/4.Marcadores/statusbar/poisonStatus100.png",
-    "img/4.Marcadores/statusbar/poisonStatus80.png",
-    "img/4.Marcadores/statusbar/poisonStatus60.png",
-    "img/4.Marcadores/statusbar/poisonStatus40.png",
-    "img/4.Marcadores/statusbar/poisonStatus20.png",
-    "img/4.Marcadores/statusbar/poisonStatus0.png",
+    "img/collectable/statusbar/poisonStatus100.png",
+    "img/collectable/statusbar/poisonStatus80.png",
+    "img/collectable/statusbar/poisonStatus60.png",
+    "img/collectable/statusbar/poisonStatus40.png",
+    "img/collectable/statusbar/poisonStatus20.png",
+    "img/collectable/statusbar/poisonStatus0.png",
   ];
   availablePoisonBubbles = 0;
 
   constructor() {
     super();
-    this.loadImage("img/4.Marcadores/statusbar/poisonStatus0.png");
+    this.loadImage("img/collectable/statusbar/poisonStatus0.png");
     this.loadImages(this.IMAGES_STATUSBAR_POISON);
     this.x = 210;
     this.y = 0;
@@ -42,3 +42,4 @@ resolveImageIndex() {
     }
 }
 }
+collectable

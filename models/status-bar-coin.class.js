@@ -1,17 +1,17 @@
 class StatusbarCoin extends DrawableObjects {
   IMAGES_STATUSBAR_COIN = [
-    "img/4.Marcadores/statusbar/coinStatus100.png",
-    "img/4.Marcadores/statusbar/coinStatus80.png",
-    "img/4.Marcadores/statusbar/coinStatus60.png",
-    "img/4.Marcadores/statusbar/coinStatus40.png",
-    "img/4.Marcadores/statusbar/coinStatus20.png",
-    "img/4.Marcadores/statusbar/coinStatus0.png",
+    "img/collectable/statusbar/coinStatus100.png",
+    "img/collectable/statusbar/coinStatus80.png",
+    "img/collectable/statusbar/coinStatus60.png",
+    "img/collectable/statusbar/coinStatus40.png",
+    "img/collectable/statusbar/coinStatus20.png",
+    "img/collectable/statusbar/coinStatus0.png",
   ];
   collectedCoins = 0;
 
   constructor() {
     super();
-    this.loadImage("img/4.Marcadores/statusbar/poisonStatus0.png");
+    this.loadImage("img/collectable/statusbar/poisonStatus0.png");
     this.loadImages(this.IMAGES_STATUSBAR_COIN);
     this.x = 410;
     this.y = 0;
