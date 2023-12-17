@@ -264,6 +264,9 @@ class Character extends MovableObject {
     } else if (this.y <= 70) {
       clearAllIntervals();
       endGameScreen("gameOver");
+      if (!mute) {
+        loseAudio();
+      }
     }
     this.deadTime++;
   }

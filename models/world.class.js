@@ -45,6 +45,7 @@ class World {
     this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy)) {
         this.character.hit();
+          hurtAudio();
         this.statusBarLife.setPercentage(this.character.healthPoints);
       }
     });
@@ -73,6 +74,7 @@ class World {
       if (this.character.isColliding(p)) {
         this.collectedPoison.push(level1.poison[bubbleIndex]);
         level1.poison.splice(bubbleIndex, 1);
+          collectPoisonAudio();
       }
     });
     this.statusBarPoison.setAvailablePoison(this.collectedPoison.length);
@@ -83,6 +85,7 @@ class World {
       if (this.character.isColliding(p)) {
         this.collectedCoin.push(level1.coin[bubbleIndex]);
         level1.coin.splice(bubbleIndex, 1);
+          collectCoinAudio();
       }
     });
     this.statusBarCoin.setCollectedCoins(this.collectedCoin.length);
@@ -103,9 +106,7 @@ class World {
         if (shot.isColliding(jelly)) {
           this.shotableObject.splice(shotIndex, 1);
           this.level.enemies[index].isShot = true;
-          if (!mute) {
             jellyFishBubble();
-          }
         }
       });
     });
@@ -116,9 +117,7 @@ class World {
       if (shot.isColliding(this.endboss)) {
         this.shotableObject.splice(shotIndex, 1);
         this.endboss.hit();
-        if (!mute) {
           jellyFishBubble();
-        }
         this.statusBarEndboss.setPercentage(this.endboss.healthPoints);
       }
     });
@@ -164,10 +163,8 @@ class World {
     if (mo.otherDirection) {
       this.flipImage(mo);
     }
-
     mo.draw(this.ctx);
     // mo.drawHitbox(this.ctx);
-
     if (mo.otherDirection) {
       this.flipImageBack(mo);
     }

@@ -169,6 +169,9 @@ class Endboss extends MovableObject {
     } else if (this.y <= 70){
       clearAllIntervals();
       endGameScreen('youWin');
+      if (!mute) {
+        winAudio();
+      }
     }
     this.deadTime++;
   }

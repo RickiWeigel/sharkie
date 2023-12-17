@@ -15,6 +15,7 @@ function initWorld(){
   world = new World(canvas, keyboard);
   gameIsStarted = true
   unmuteAllAudio();
+  backgroundAudio();
 }
 
 function clearAllIntervals() {
