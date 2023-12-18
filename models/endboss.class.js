@@ -106,6 +106,7 @@ class Endboss extends MovableObject {
 
   bossIntro() {
     if (this.endbossIntro && !this.firstContact) {
+      endbossAudio();
       this.i = 0;
       this.y = 50;
       this.firstContact = true;
@@ -166,9 +167,9 @@ class Endboss extends MovableObject {
     }
     if (this.y > -70) {
       this.y -= 10;
-    } else if (this.y <= 70){
+    } else if (this.y <= 70) {
       clearAllIntervals();
-      endGameScreen('youWin');
+      endGameScreen("youWin");
       if (!mute) {
         winAudio();
       }

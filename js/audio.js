@@ -8,12 +8,10 @@ let lose_sound = new Audio("audio/lose.mp3");
 let win_sound = new Audio("audio/win.mp3");
 let hurt_sound = new Audio("audio/hurt.mp3");
 let background_sound = new Audio("audio/backgroundAudio.mp3");
-
-
-
-
+let endboss_sound = new Audio("audio/endboss.mp3");
 
 let mute = false;
+let background_audio = true
 
 function toggleAudio() {
   const volumeImg = document.getElementById("volume");
@@ -28,6 +26,7 @@ function toggleAudio() {
 }
 
 function unmuteAllAudio() {
+  background_audio = true;
   mute = false;
   swim_sound.volume = 0.02;
   slap_sound.volume = 0.05;
@@ -38,9 +37,11 @@ function unmuteAllAudio() {
   win_sound.volume = 0.02;
   hurt_sound.volume = 0.02;
   background_sound.volume = 0.02;
+  endboss_sound.volume = 0.02;
 }
 
 function muteAllAudio() {
+  background_audio = false;
   mute = true;
   lose_sound.volume = 0;
   swim_sound.volume = 0;
@@ -51,38 +52,59 @@ function muteAllAudio() {
   win_sound.volume = 0;
   hurt_sound.volume = 0;
   background_sound.volume = 0;
+  endboss_sound.volume = 0;
 }
 
 function backgroundAudio() {
-  background_sound.loop = true
+  background_sound.loop = true;
   if (mute) {
-      background_sound.pause(); // Pausiere die Wiedergabe, wenn stummgeschaltet
+    background_sound.pause(); // Pausiere die Wiedergabe, wenn stummgeschaltet
   } else {
-      if (background_sound.paused) {
-          background_sound.play(); // Starte die Wiedergabe, wenn nicht stummgeschaltet und pausiert
-      }
+    if (background_sound.paused && background_audio) {
+      background_sound.play(); // Starte die Wiedergabe, wenn nicht stummgeschaltet und pausiert
+    }
   }
   setTimeout(backgroundAudio, 100);
 }
 
+function endbossAudio() {
+  backgroundAudioStop();
+  endboss_sound.loop = true;
+  if (mute) {
+    endboss_sound.pause(); // Pausiere die Wiedergabe, wenn stummgeschaltet
+  } else {
+    if (endboss_sound.paused) {
+      endboss_sound.play(); // Starte die Wiedergabe, wenn nicht stummgeschaltet und pausiert
+    }
+  }
+  setTimeout(endbossAudio, 100);
+}
 
-function backgroundAudioStop(){
+function endbossAudioStop() {
+  endboss_sound.pause();
+}
+
+function backgroundAudioStop() {
+  background_audio = false
+  background_sound.loop = false;
   background_sound.pause();
 }
 
-function loseAudio(){
+function loseAudio() {
   backgroundAudioStop();
+  endbossAudioStop();
   lose_sound.play();
 }
 
-function hurtAudio(){
+function hurtAudio() {
   if (!mute) {
     hurt_sound.play();
   }
 }
 
-function winAudio(){
+function winAudio() {
   backgroundAudioStop();
+  endbossAudioStop();
   win_sound.play();
 }
 
