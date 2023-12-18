@@ -28,45 +28,74 @@ class Pufferfish extends MovableObject {
     this.animate();
   }
 
+  /**
+   * Initiates animations for the object, including move animation and swim animation.
+   */
   animate() {
     this.moveAnimation();
     this.swimAnimation();
   }
 
+  /**
+   * Swim animation, continuously playing frames from the idle animation at a specified interval.
+   */
   swimAnimation() {
     setInterval(() => {
-        this.playAnimation(this.IMAGES_IDLE);
+      this.playAnimation(this.IMAGES_IDLE);
     }, 1000 / 10);
-}
+  }
 
+  /**
+   * Generates a random Y position within a specific range.
+   * @returns {number} - Random Y position.
+   */
   rondomPositionY() {
     return 30 + Math.floor(Math.random() * 380);
   }
 
+  /**
+   * Generates a random X position within a specific range.
+   * @returns {number} - Random X position.
+   */
   rondomPositionX() {
     return 820 + Math.floor(Math.random() * 3580);
   }
 
+  /**
+   * Generates a random speed within a specific range.
+   * @returns {number} - Random speed.
+   */
   rondomSpeed() {
     return 0.3 + Math.random() * 0.9;
   }
 
+  /**
+   * Move animation, continuously moving the object left at a specified speed.
+   */
   moveAnimation() {
     setInterval(() => {
-        this.moveLeft(this.speed);
+      this.moveLeft(this.speed);
     }, 1000 / 60);
   }
 
+  /**
+   * Dead animation, displaying frames from the dead animation and moving the dead fish.
+   * @param {boolean} otherDirection - Indicates whether the dead fish should move in the opposite direction.
+   */
   deadAnimation(otherDirection) {
     this.width = 55;
     this.height = 55;
     setInterval(() => {
-        this.img.src = this.IMAGES_DEAD[0];
-        this.speed = 0;
-        this.moveDeadFish(otherDirection);
+      this.img.src = this.IMAGES_DEAD[0];
+      this.speed = 0;
+      this.moveDeadFish(otherDirection);
     }, 1);
-}
+  }
 
+  /**
+   * Moves the dead fish either to the right or left.
+   * @param {boolean} otherDirection - Indicates whether the dead fish should move in the opposite direction.
+   */
   moveDeadFish(otherDirection) {
     if (!otherDirection) {
       this.moveRight(1);

@@ -24,10 +24,16 @@ class World {
     this.run();
   }
 
+  /**
+   * Sets the world property for the character.
+   */
   setWorld() {
     this.character.world = this;
   }
 
+  /**
+   * Runs the game loop with collision checks and other game logic.
+   */
   run() {
     setInterval(() => {
       this.checkCollisions();
@@ -41,6 +47,9 @@ class World {
     }, 100);
   }
 
+  /**
+   * Checks collisions between the character and enemies, reducing character health if a collision occurs.
+   */
   checkCollisions() {
     this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy)) {
@@ -50,6 +59,9 @@ class World {
     });
   }
 
+  /**
+   * Checks collisions between the character and the endboss, reducing character health if a collision occurs.
+   */
   checkCharacterCollisionsEnboss() {
     if (this.character.isColliding(this.endboss)) {
       this.character.hit();
@@ -57,6 +69,9 @@ class World {
     }
   }
 
+  /**
+   * Checks if the character is close to a Pufferfish and performs actions when the character is in the attack animation.
+   */
   isCharacterCloseTo() {
     this.level.enemies.forEach((enemy) => {
       if (enemy instanceof Pufferfish && this.character.isNearToSharkie(enemy) && this.character.slapAnimationTime) {
@@ -68,28 +83,37 @@ class World {
     });
   }
 
+  /**
+   * Checks collisions between the character and poison bottles, collecting poison and updating the status bar.
+   */
   checkCollisionsWithBottle() {
     this.level.poison.forEach((p, bubbleIndex) => {
       if (this.character.isColliding(p)) {
         this.collectedPoison.push(level1.poison[bubbleIndex]);
         level1.poison.splice(bubbleIndex, 1);
-          collectPoisonAudio();
+        collectPoisonAudio();
       }
     });
     this.statusBarPoison.setAvailablePoison(this.collectedPoison.length);
   }
 
+  /**
+   * Checks collisions between the character and coins, collecting coins and updating the status bar.
+   */
   checkCollisionsWithCoin() {
     this.level.coin.forEach((p, bubbleIndex) => {
       if (this.character.isColliding(p)) {
         this.collectedCoin.push(level1.coin[bubbleIndex]);
         level1.coin.splice(bubbleIndex, 1);
-          collectCoinAudio();
+        collectCoinAudio();
       }
     });
     this.statusBarCoin.setCollectedCoins(this.collectedCoin.length);
   }
 
+  /**
+   * Checks if the character is in the boss area, triggering the endboss spawning and intro animation.
+   */
   checkSharkieInBossArea() {
     if (this.character.x > 2050) {
       this.endbossSpawning = true;
@@ -98,6 +122,9 @@ class World {
     }
   }
 
+  /**
+   * Checks collisions between shotable objects and jellyfish, removing the shotable object and marking the jellyfish as shot.
+   */
   checkCollisionBubbleWithJellyfish() {
     const jellyfishArray = level1.enemies.filter((enemy) => enemy instanceof Jellyfish);
     this.shotableObject.forEach((shot, shotIndex) => {
@@ -105,23 +132,29 @@ class World {
         if (shot.isColliding(jelly)) {
           this.shotableObject.splice(shotIndex, 1);
           this.level.enemies[index].isShot = true;
-            jellyFishBubble();
+          jellyFishBubble();
         }
       });
     });
   }
 
+  /**
+   * Checks collisions between shotable objects and the endboss, removing the shotable object and damaging the endboss.
+   */
   checkCollisionBubbleWithEndboss() {
     this.shotableObject.forEach((shot, shotIndex) => {
       if (shot.isColliding(this.endboss)) {
         this.shotableObject.splice(shotIndex, 1);
         this.endboss.hit();
-          jellyFishBubble();
+        jellyFishBubble();
         this.statusBarEndboss.setPercentage(this.endboss.healthPoints);
       }
     });
   }
 
+  /**
+   * Draws the game elements on the canvas, including background objects, moving objects, and status bar objects.
+   */
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.translate(this.camera_x, 0);
@@ -136,10 +169,16 @@ class World {
     });
   }
 
+  /**
+   * Draws background objects on the canvas.
+   */
   drawBackgroundObjects() {
     this.addObjectsToMap(this.level.backgroundObjects);
   }
 
+  /**
+   * Draws moving objects on the canvas, including enemies, characters, and other interactive elements.
+   */
   drawMovingObjects() {
     this.addObjectsToMap(this.level.enemies);
     this.addToMap(this.character);
@@ -151,6 +190,9 @@ class World {
     this.ctx.translate(-this.camera_x, 0);
   }
 
+  /**
+   * Draws status bar objects on the canvas.
+   */
   drawStatusBarObjects() {
     this.addToMap(this.statusBarLife);
     this.addToMap(this.statusBarPoison);
@@ -158,6 +200,9 @@ class World {
     this.addToMap(this.statusBarEndboss);
   }
 
+  /**
+   * Adds a single object to the canvas, taking into account the flip effect for objects facing the opposite direction.
+   */
   addToMap(mo) {
     if (mo.otherDirection) {
       this.flipImage(mo);
@@ -169,12 +214,18 @@ class World {
     }
   }
 
+  /**
+   * Adds multiple objects to the canvas.
+   */
   addObjectsToMap(objects) {
     objects.forEach((o) => {
       this.addToMap(o);
     });
   }
 
+  /**
+   * Flips the image horizontally for objects facing the opposite direction.
+   */
   flipImage(mo) {
     this.ctx.save();
     this.ctx.translate(mo.width, 0);
@@ -182,6 +233,9 @@ class World {
     mo.x = mo.x * -1;
   }
 
+  /**
+   * Restores the original orientation of the image after flipping.
+   */
   flipImageBack(mo) {
     mo.x = mo.x * -1;
     this.ctx.restore();

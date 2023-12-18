@@ -11,8 +11,11 @@ let background_sound = new Audio("audio/backgroundAudio.mp3");
 let endboss_sound = new Audio("audio/endboss.mp3");
 
 let mute = false;
-let background_audio = true
+let background_audio = true;
 
+/**
+ * Toggles the game audio on or off.
+ */
 function toggleAudio() {
   const volumeImg = document.getElementById("volume");
   mute = !mute;
@@ -25,6 +28,9 @@ function toggleAudio() {
   }
 }
 
+/**
+ * Unmutes all game audio.
+ */
 function unmuteAllAudio() {
   background_audio = true;
   mute = false;
@@ -40,6 +46,9 @@ function unmuteAllAudio() {
   endboss_sound.volume = 0.02;
 }
 
+/**
+ * Mutes all game audio.
+ */
 function muteAllAudio() {
   background_audio = false;
   mute = true;
@@ -55,87 +64,129 @@ function muteAllAudio() {
   endboss_sound.volume = 0;
 }
 
+/**
+ * Manages background audio playback with looping and mute functionality.
+ */
 function backgroundAudio() {
   background_sound.loop = true;
   if (mute) {
-    background_sound.pause(); // Pausiere die Wiedergabe, wenn stummgeschaltet
+    background_sound.pause();
   } else {
     if (background_sound.paused && background_audio) {
-      background_sound.play(); // Starte die Wiedergabe, wenn nicht stummgeschaltet und pausiert
+      background_sound.play();
     }
   }
   setTimeout(backgroundAudio, 100);
 }
 
+/**
+ * Manages endboss audio playback with looping and mute functionality.
+ */
 function endbossAudio() {
   backgroundAudioStop();
   endboss_sound.loop = true;
   if (mute) {
-    endboss_sound.pause(); // Pausiere die Wiedergabe, wenn stummgeschaltet
+    endboss_sound.pause();
   } else {
     if (endboss_sound.paused) {
-      endboss_sound.play(); // Starte die Wiedergabe, wenn nicht stummgeschaltet und pausiert
+      endboss_sound.play();
     }
   }
   setTimeout(endbossAudio, 100);
 }
 
+/**
+ * Stops endboss audio playback.
+ */
 function endbossAudioStop() {
   endboss_sound.pause();
 }
 
+/**
+ * Stops background audio playback and resets state.
+ */
 function backgroundAudioStop() {
-  background_audio = false
+  background_audio = false;
   background_sound.loop = false;
   background_sound.pause();
 }
 
+/**
+ * Plays the lose sound effect and stops background and endboss audio.
+ */
 function loseAudio() {
   backgroundAudioStop();
   endbossAudioStop();
   lose_sound.play();
 }
 
+/**
+ * Plays the hurt sound effect if audio is not muted.
+ */
 function hurtAudio() {
   if (!mute) {
     hurt_sound.play();
   }
 }
 
+/**
+ * Plays the win sound effect and stops background and endboss audio.
+ */
 function winAudio() {
   backgroundAudioStop();
   endbossAudioStop();
   win_sound.play();
 }
 
+/**
+ * Plays the coin collect sound effect if audio is not muted.
+ */
 function collectCoinAudio() {
   if (!mute) {
     coinCollect_sound.play();
   }
 }
 
+/**
+ * Plays the poison collect sound effect if audio is not muted.
+ */
 function collectPoisonAudio() {
   if (!mute) {
     poisonCollect_sound.play();
   }
 }
 
+/**
+ * Plays the sharkie swim sound effect.
+ */
 function sharkieSwimAudio() {
   swim_sound.play();
 }
 
+/**
+ * Pauses the sharkie swim sound effect.
+ */
 function sharkieSwimAudioPause() {
   swim_sound.pause();
 }
 
+/**
+ * Plays the bubble sound effect.
+ */
 function bubbleAudio() {
   bubble_sound.play();
 }
 
+/**
+ * Plays the sharkie slap sound effect.
+ */
 function sharkieSlap() {
   slap_sound.play();
 }
 
+/**
+ * Plays the jellyfish bubble sound effect if audio is not muted.
+ */
 function jellyFishBubble() {
   if (!mute) {
     jellyfishBubble_sound.play();

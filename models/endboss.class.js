@@ -86,6 +86,9 @@ class Endboss extends MovableObject {
     this.lastHit = new Date().getTime();
   }
 
+  /**
+   * Initiates the continuous animation loop for the endboss character.
+   */
   animate() {
     this.currentImage = 0;
     setInterval(() => {
@@ -104,6 +107,11 @@ class Endboss extends MovableObject {
     }, 120);
   }
 
+  /**
+   * Handles the intro animation logic for the endboss character.
+   *
+   * @returns {boolean} - True during the introductory animation, false otherwise.
+   */
   bossIntro() {
     if (this.endbossIntro && !this.firstContact) {
       endbossAudio();
@@ -119,6 +127,9 @@ class Endboss extends MovableObject {
     return this.i <= 10;
   }
 
+  /**
+   * Initiates a continuous movement animation for the endboss character.
+   */
   movingAnimation() {
     setInterval(() => {
       if (this.y + this.height == 550) {
@@ -135,20 +146,34 @@ class Endboss extends MovableObject {
     }, 1000 / 60);
   }
 
+  /**
+   * Handles the animation logic during the introductory animation of the endboss character.
+   */
   introAnimation() {
     this.playAnimation(this.IMAGES_SPAWNING);
   }
 
+  /**
+   * Handles the animation logic during the attack animation of the endboss character.
+   */
   attackAnimation() {
     this.playAnimation(this.IMAGES_ATTACK);
   }
 
+  /**
+   * Checks if the endboss character is currently attacking.
+   *
+   * @returns {boolean} - True if the endboss is attacking, false otherwise.
+   */
   isAttacking() {
     let timePassed = new Date().getTime() - this.lastAttack;
     timePassed = timePassed / 1000;
     return timePassed < 1.5;
   }
 
+  /**
+   * Sets the attack time interval for the endboss character.
+   */
   setAttackTime() {
     setInterval(() => {
       let time1 = new Date().getTime();
@@ -159,6 +184,9 @@ class Endboss extends MovableObject {
     }, 1000);
   }
 
+  /**
+   * Handles the animation logic during the death animation of the endboss character.
+   */
   deadAnimation() {
     if (this.deadTime >= 3) {
       this.loadImage(this.IMAGES_DEAD[4]);

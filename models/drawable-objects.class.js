@@ -7,11 +7,21 @@ class DrawableObjects {
   imageCache = {};
   currentImage = 0;
 
+  /**
+   * Loads an image from the specified path and assigns it to the object's img property.
+   *
+   * @param {string} path - The path to the image file.
+   */
   loadImage(path) {
     this.img = new Image();
     this.img.src = path;
   }
 
+  /**
+   * Loads multiple images from an array of paths and caches them in the imageCache property.
+   *
+   * @param {string[]} arr - An array of paths to image files.
+   */
   loadImages(arr) {
     arr.forEach((path) => {
       let img = new Image();
@@ -20,6 +30,11 @@ class DrawableObjects {
     });
   }
 
+  /**
+   * Draws the object's image on the canvas context.
+   *
+   * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+   */
   draw(ctx) {
     try {
       ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
@@ -29,6 +44,11 @@ class DrawableObjects {
     }
   }
 
+  /**
+   * Draws the hitbox of the object on the canvas context.
+   *
+   * @param {CanvasRenderingContext2D} ctx - The canvas rendering context.
+   */
   drawHitbox(ctx) {
     if (
       this instanceof Character ||
@@ -39,12 +59,7 @@ class DrawableObjects {
       this instanceof Poison
     ) {
       ctx.beginPath();
-      ctx.rect(
-        this.x + this.offset.left,
-        this.y + this.offset.top,
-        this.width - this.offset.right,
-        this.height - this.offset.bottom
-      );
+      ctx.rect(this.x + this.offset.left, this.y + this.offset.top, this.width - this.offset.right, this.height - this.offset.bottom);
       ctx.strokeStyle = "red"; // Farbe des Rahmens
       ctx.lineWidth = 2; // Breite des Rahmens
       ctx.stroke();

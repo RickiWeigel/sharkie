@@ -134,7 +134,10 @@ class Character extends MovableObject {
     this.lastShot = new Date().getTime();
   }
 
-  sharkieAnimation(){
+  /**
+   * Initiates the sharkie animation loop, determining the appropriate animation based on the current state.
+   */
+  sharkieAnimation() {
     setInterval(() => {
       if (this.shouldPerformLongIdle()) {
         this.longIdleAnimation();
@@ -155,6 +158,9 @@ class Character extends MovableObject {
     }, 1000 / 12);
   }
 
+  /**
+   * Manages the continuous movement and attack logic of the sharkie character.
+   */
   sharkieMovement() {
     sharkieSwimAudioPause();
     setInterval(() => {
@@ -169,6 +175,9 @@ class Character extends MovableObject {
     }, 1000 / 70);
   }
 
+  /**
+   * Manages sharkie attacks, including checking for slaps and bubble shots.
+   */
   sharkieAttacks() {
     this.checkSlap();
     if (this.world.keyboard.SPACE && this.world.collectedPoison.length > 0) {
@@ -178,6 +187,9 @@ class Character extends MovableObject {
     }
   }
 
+  /**
+   * Checks if the right arrow key is pressed and moves sharkie to the right if within level boundaries.
+   */
   checkSwimmingRight() {
     if (this.world.keyboard.RIGHT && this.x < level1.level_end_x) {
       sharkieSwimAudio();
@@ -187,6 +199,9 @@ class Character extends MovableObject {
     }
   }
 
+  /**
+   * Checks if the left arrow key is pressed and moves sharkie to the left if within level boundaries.
+   */
   checkSwimmingLeft() {
     if (this.world.keyboard.LEFT && this.x > 0) {
       sharkieSwimAudio();
@@ -196,6 +211,9 @@ class Character extends MovableObject {
     }
   }
 
+  /**
+   * Checks if the up arrow key is pressed and moves sharkie upwards if within level boundaries.
+   */
   checkSwimmingUp() {
     if (this.world.keyboard.UP) {
       sharkieSwimAudio();
@@ -206,6 +224,9 @@ class Character extends MovableObject {
     }
   }
 
+  /**
+   * Checks if the down arrow key is pressed and moves sharkie downwards if within level boundaries.
+   */
   checkSwimmingDown() {
     if (this.world.keyboard.DOWN) {
       sharkieSwimAudio();
@@ -216,43 +237,77 @@ class Character extends MovableObject {
     }
   }
 
+  /**
+   * Checks if the "D" key is pressed and initiates the slap animation.
+   */
   checkSlap() {
     if (this.world.keyboard.D && !this.isHurt()) {
       setTimeout(() => {
         sharkieSlap();
       }, 300);
-      
+
       this.lastMove = new Date().getTime();
       this.currentImage = 0;
       this.setSlapAnimationTime(800);
     }
   }
 
+  /**
+   * Checks if the sharkie should perform the long idle animation.
+   *
+   * @returns {boolean} - True if the conditions for the long idle animation are met, otherwise false.
+   */
   shouldPerformLongIdle() {
     return !this.checkLastMove(8, this.lastMove) && !this.isDead() && !this.isHurt();
   }
 
+  /**
+   * Checks if the sharkie should perform the hurt animation.
+   *
+   * @returns {boolean} - True if the conditions for the hurt animation are met, otherwise false.
+   */
   shouldPerformHurtAnimation() {
     return this.isHurt() && !this.world.keyboard.D;
   }
 
+  /**
+   * Checks if the sharkie should perform the swim animation.
+   *
+   * @returns {boolean} - True if the conditions for the swim animation are met, otherwise false.
+   */
   shouldPerformSwimAnimation() {
     return this.world.keyboard.RIGHT || this.world.keyboard.LEFT || this.world.keyboard.UP || this.world.keyboard.DOWN;
   }
 
+  /**
+   * Checks if the sharkie should perform the bubble shot animation.
+   *
+   * @returns {boolean} - True if the conditions for the bubble shot animation are met, otherwise false.
+   */
   shouldPerformBubbleShotAnimation() {
     return this.bubbleShotAnimationTime && this.world.collectedPoison.length > 0;
   }
 
+  /**
+   * Checks if the sharkie should perform the slap animation.
+   *
+   * @returns {boolean} - True if the conditions for the slap animation are met, otherwise false.
+   */
   shouldPerformSlapAnimation() {
     return this.slapAnimationTime;
   }
 
+  /**
+   * Initiates both the sharkie movement and animation loops.
+   */
   animate() {
     this.sharkieMovement();
     this.sharkieAnimation();
   }
 
+  /**
+   * Handles the animation logic when the sharkie is dead.
+   */
   deadAnimation() {
     if (this.deadTime >= 10) {
       this.loadImage(this.IMAGES_DEAD[11]);
@@ -271,6 +326,9 @@ class Character extends MovableObject {
     this.deadTime++;
   }
 
+  /**
+   * Handles the animation logic for the long idle animation.
+   */
   longIdleAnimation() {
     if (this.deadTime >= 12) {
       this.loadImage(this.IMAGES_LONG_IDLE[13]);
@@ -284,6 +342,11 @@ class Character extends MovableObject {
     this.deadTime++;
   }
 
+  /**
+   * Sets the time duration for the bubble shot animation.
+   *
+   * @param {number} time - The duration of the bubble shot animation in milliseconds.
+   */
   setBubbleShotAnimationTime(time) {
     this.bubbleShotAnimationTime = true;
     setTimeout(() => {
@@ -291,6 +354,11 @@ class Character extends MovableObject {
     }, time);
   }
 
+  /**
+   * Sets the time duration for the slap animation.
+   *
+   * @param {number} time - The duration of the slap animation in milliseconds.
+   */
   setSlapAnimationTime(time) {
     this.slapAnimationTime = true;
     setTimeout(() => {
@@ -298,6 +366,9 @@ class Character extends MovableObject {
     }, time);
   }
 
+  /**
+   * Checks if the current animation frame is suitable for triggering the bubble shot and creates a bubble object accordingly.
+   */
   checkBubbleShot() {
     if (this.currentImage == 6) {
       let bubble = new ShotableObject(this.x + 200, this.y + 140);

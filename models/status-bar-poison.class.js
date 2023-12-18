@@ -20,12 +20,22 @@ class StatusbarPoison extends DrawableObjects {
     this.setAvailablePoison(0);
   }
 
+  /**
+   * Sets the available poison bubbles and updates the image based on the resolved index.
+   *
+   * @param {number} availablePoisonBubbles - The number of available poison bubbles.
+   */
   setAvailablePoison(availablePoisonBubbles) {
     this.availablePoisonBubbles = availablePoisonBubbles;
     let path = this.IMAGES_STATUSBAR_POISON[this.resolveImageIndex()];
     this.img = this.imageCache[path];
   }
 
+  /**
+   * Resolves the index for selecting the appropriate image based on the number of available poison bubbles.
+   *
+   * @returns {number} - The resolved index for selecting the image.
+   */
   resolveImageIndex() {
     if (this.availablePoisonBubbles > 8) {
       return 0;

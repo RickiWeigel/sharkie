@@ -38,20 +38,24 @@ class Jellyfish extends MovableObject {
     this.down = true;
   }
 
+  /**
+   * Initiates the continuous animation loop for the ShotableObject.
+   */
   animate() {
     this.move();
     setInterval(() => {
       if (this.isShot) {
         this.playAnimation(this.IMAGES_DEAD);
-        setTimeout(() => {
-        }, 200);
-        
+        setTimeout(() => {}, 200);
       } else {
         this.playAnimation(this.IMAGES_IDLE);
       }
     }, 150);
   }
 
+  /**
+   * Initiates the continuous movement animation for the ShotableObject.
+   */
   move() {
     setInterval(() => {
       if (this.isShot) {

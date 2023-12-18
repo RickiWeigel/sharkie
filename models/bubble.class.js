@@ -13,17 +13,31 @@ class Bubble extends MovableObject {
     this.moveBubbleUp(this.bubbleSpeed);
   }
 
+  /**
+   * Generates a random x-coordinate for bubbles within a specified range.
+   *
+   * @returns {number} - The randomly generated x-coordinate.
+   */
   rondomPositionForBubbles() {
     this.positionX = 50 + Math.floor(Math.random() * 2880);
     return this.positionX;
   }
 
+  /**
+   * Generates a random size for bubbles within a specified range.
+   *
+   * @returns {number} - The randomly generated size for bubbles.
+   */
   rondomSizeForBubbles() {
     this.size = 7 + Math.floor(Math.random() * 25);
     return this.size;
   }
 
-  
+  /**
+   * Moves the bubble upward with a specified speed, handling audio and reset logic.
+   *
+   * @param {number} bubbleSpeed - The speed at which the bubble moves upward.
+   */
   moveBubbleUp(bubbleSpeed) {
     this.bubble_sound.volume = Math.random() * 0.005;
     this.bubble_sound.pause();
@@ -33,7 +47,7 @@ class Bubble extends MovableObject {
         if (this.y <= -10) {
           if (!mute) {
             this.bubble_sound.play();
-          }else{
+          } else {
             this.bubble_sound.pause();
           }
           this.y = 500;

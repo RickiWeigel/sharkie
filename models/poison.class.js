@@ -28,6 +28,9 @@ class Poison extends MovableObject {
     this.animate();
   }
 
+  /**
+ * Initiates animation for the object, continuously playing frames from the poison animation at a specified interval.
+ */
   animate() {
     setInterval(() => {
       this.playAnimation(this.IMAGES_POISON);

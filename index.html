@@ -25,7 +25,7 @@
     <script src="models/level.class.js"></script>
     <script src="models/endboss.class.js"></script>
     <script src="levels/level1.js"></script>
-    <script src="js/game.js"></script>
+ 
 
     <title>Sharkie</title>
 </head>
@@ -33,8 +33,12 @@
 <body onload="init()">
     <h1>SHARKIE</h1>
 
-    <div id="screen">
+    <div id="portraitScreen" class="v-none">
+        <img id="portraitImage" src="./img/buttons/rotate.png">
+        <p class="portrait-text">Please rotate your mobile device to landscape view</p>
+    </div>
 
+    <div id="screen">
         <input type="checkbox" class="openSidebarMenu" id="openSidebarMenu">
         <label for="openSidebarMenu" class="sidebarIconToggle" onclick="toggleMenu()">
             <div class="spinner diagonal part-1"></div>
@@ -123,7 +127,7 @@
         </div>
     </div>
     <img class="button" id="buttonFullscreen" src="img/buttons/fullscreen/fullscreen.png" onclick="toggleFullscreen()">
-
+    <script src="js/game.js"></script>
 </body>
 
 </html>
