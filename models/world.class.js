@@ -45,7 +45,6 @@ class World {
     this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy)) {
         this.character.hit();
-          hurtAudio();
         this.statusBarLife.setPercentage(this.character.healthPoints);
       }
     });
@@ -54,7 +53,6 @@ class World {
   checkCharacterCollisionsEnboss() {
     if (this.character.isColliding(this.endboss)) {
       this.character.hit();
-      hurtAudio();
       this.statusBarLife.setPercentage(this.character.healthPoints);
     }
   }

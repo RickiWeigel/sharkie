@@ -39,6 +39,7 @@ class MovableObject extends DrawableObjects {
   }
 
   hit() {
+    hurtAudio();
     this.healthPoints -= 5;
     if (this.healthPoints <= 0) {
       this.healthPoints = 0;
