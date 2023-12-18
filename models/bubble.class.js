@@ -44,15 +44,16 @@ class Bubble extends MovableObject {
     setTimeout(() => {
       setInterval(() => {
         this.y -= bubbleSpeed;
-        if (this.y <= -10) {
-          if (!mute) {
-            this.bubble_sound.play();
-          } else {
-            this.bubble_sound.pause();
-          }
-          this.y = 500;
-          this.x = this.rondomPositionForBubbles();
+        if (this.y > -10) {
+          return;
         }
+        if (!mute) {
+          this.bubble_sound.play();
+        } else {
+          this.bubble_sound.pause();
+        }
+        this.y = 500;
+        this.x = this.rondomPositionForBubbles();
       }, 1000 / 60);
     }, 10);
   }
