@@ -212,6 +212,8 @@ table {
     filter: drop-shadow(0 0 10px #ffffff80);
 }
 
+
+
 /* Navigation */
 
 #sidebarMenu {
@@ -458,9 +460,10 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
 
 
 @media (max-width: 920px) {
-    #screen{
+    #screen {
         width: 100%;
     }
+
     canvas {
         width: 100%;
     }
