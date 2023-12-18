@@ -428,7 +428,10 @@ input[type=checkbox]:checked~.sidebarIconToggle>.diagonal.part-2 {
 }
 
 
-@media only screen and (max-width: 720px) {
+@media (max-width: 920px) {
+    #screen{
+        width: 100%;
+    }
     canvas {
         width: 100%;
     }
