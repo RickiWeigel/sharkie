@@ -57,10 +57,32 @@ function initLevel() {
   }
 
   function creatPoisons() {
-    return [new Poison(150, 150), new Poison(280, 350), new Poison(280, 350), new Poison(580, 250), new Poison(780, 400)];
+    return [
+      new Poison(150, 150),
+      new Poison(280, 350),
+      new Poison(680, 80),
+      new Poison(580, 250),
+      new Poison(780, 400),
+      new Poison(980, 340),
+      new Poison(1100, 90),
+      new Poison(1580, 250),
+      new Poison(1700, 280),
+      new Poison(1880, 380),
+    ];
   }
   function creatCoins() {
-    return [new Coin(250, 150), new Coin(380, 350), new Coin(820, 250),new Coin(950, 150),new Coin(1250, 430),new Coin(650, 280), new Coin(1580, 380), new Coin(1600, 70),new Coin(1220, 180),new Coin(1000, 230)];
+    return [
+      new Coin(250, 150),
+      new Coin(380, 350),
+      new Coin(650, 280),
+      new Coin(820, 250),
+      new Coin(950, 150),
+      new Coin(1000, 230),
+      new Coin(1220, 180),
+      new Coin(1250, 430),
+      new Coin(1580, 380),
+      new Coin(1600, 70),
+    ];
   }
   function creatBubbles() {
     return [new Bubble(), new Bubble(), new Bubble(), new Bubble(), new Bubble(), new Bubble(), new Bubble(), new Bubble(), new Bubble()];

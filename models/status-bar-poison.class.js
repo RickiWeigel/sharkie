@@ -37,7 +37,7 @@ class StatusbarPoison extends DrawableObjects {
    * @returns {number} - The resolved index for selecting the image.
    */
   resolveImageIndex() {
-    if (this.availablePoisonBubbles > 8) {
+    if (this.availablePoisonBubbles > 9) {
       return 0;
     } else if (this.availablePoisonBubbles > 6) {
       return 1;
