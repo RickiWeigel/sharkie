@@ -286,8 +286,8 @@ input[type=checkbox] {
     cursor: pointer;
     position: absolute;
     z-index: 10;
-    top: 5px;
-    right: 5px;
+    top: 15px;
+    right: 15px;
     height: clamp(16px, 20vh, 22px);
     width: clamp(16px, 5vw, 22px);
 }

@@ -60,7 +60,7 @@ function initLevel() {
     return [new Poison(150, 150), new Poison(280, 350), new Poison(280, 350), new Poison(580, 250), new Poison(780, 400)];
   }
   function creatCoins() {
-    return [new Coin(250, 150), new Coin(380, 350)];
+    return [new Coin(250, 150), new Coin(380, 350), new Coin(820, 250),new Coin(950, 150),new Coin(1250, 430),new Coin(650, 280), new Coin(1580, 380), new Coin(1800, 70),new Coin(1220, 180),new Coin(1220, 280)];
   }
   function creatBubbles() {
     return [new Bubble(), new Bubble(), new Bubble(), new Bubble(), new Bubble(), new Bubble(), new Bubble(), new Bubble(), new Bubble()];

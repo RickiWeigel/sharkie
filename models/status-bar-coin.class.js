@@ -37,7 +37,7 @@ class StatusbarCoin extends DrawableObjects {
    * @returns {number} - The resolved index for selecting the image.
    */
   resolveImageIndex() {
-    if (this.collectedCoins > 8) return 0;
+    if (this.collectedCoins > 9) return 0;
     if (this.collectedCoins > 6) return 1;
     if (this.collectedCoins > 4) return 2;
     if (this.collectedCoins > 2) return 3;
